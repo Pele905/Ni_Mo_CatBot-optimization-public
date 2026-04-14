@@ -229,17 +229,6 @@ def extract_CV_data_from_stability_cycling(df,
     with open(CV_cycling_dict_path, 'w') as outfile:
         json.dump(CV_cycling_dict, outfile, indent=4)
 
-def get_WE_V_at_current_densities(LSV_I, LSV_V, desired_current_densities = [], A = 0.975):
-    
-    WE_voltages = []
-    for current_density in desired_current_densities:
-        #print(np.array(LSV_I * A) - current_density)
-        idx_argmin = np.argmin(np.abs(np.array(LSV_I * A) - current_density))
-        #print(current_density)
-        #print(np.min(np.array(LSV_I * A) - current_density))
-        WE_voltages.append(LSV_V[idx_argmin])
-    
-    return WE_voltages
 
 def extract_GEIS_data_general_protocol(df,
                                        use_GEIS_i_for_IR = 0, 
@@ -480,8 +469,6 @@ def transform_CVs_to_stability_metrics(stability_cycling_CVs,
     
     combined_dict = {**Es, **Is, **Rs}
     return combined_dict
-
-
 
 def group_consecutive_scans(scans):
     grouped_scans = []

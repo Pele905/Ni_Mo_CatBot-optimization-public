@@ -1,15 +1,18 @@
 import matplotlib.pyplot as plt 
 import numpy as np
-from analysis_scripts_v2 import (transform_EIS_data_to_dict, transform_CVs_to_ECSA, transform_CVs_to_stability_metrics, get_peaks_from_CVs )
 from analysis_scripts import (get_forwards_backwards_CV_scan, get_stability_data_from_stability_cycling, )
-from extract_electrochemical_data_from_datasets import analyze_data_after_testing
+#from extract_electrochemical_data_from_datasets import analyze_data_after_testing
+
 import os
 import numpy as np
-import matplotlib.cm as cm
 from datetime import datetime
 import json 
 import pandas as pd 
-import uuid 
+import sys 
+# Add the parent directory to the Python path
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+from analysis_scripts import (extract_CV_data_general_protocol, extract_GEIS_data_general_protocol)
+
 # Here in this example, we extract all the data, and then store it in the proper data folder 
 
 def save_json_safely(json_path, 
@@ -238,13 +241,61 @@ def load_json_safely(path):
         print(f"Failed to load {path}: {e}")
         return None
 
+
+
+def extract_CVs_GEIS(datafile_path = None, 
+                               CV_stability_cycling_scan_rate = 50, 
+                               save_folder_path_data_file = "", 
+                               ):
+
+    experiment_name = datafile_path.split("\\")[-1].split(".csv")[0]
+        
+    try:
+        df = pd.read_csv(datafile_path)
+    except Exception as e:
+        print("CSV datafile could not be opened")
+        print(e)
+        
+    
+    if save_folder_path_data_file == "":
+        save_folder_path_data_file = os.path.dirname(datafile_path)
+    
+    try:
+        for file in os.listdir(save_folder_path_data_file):
+            if "temperature" in file:
+                temperature_json_path = os.path.join(save_folder_path_data_file, file) # if you want to investigate the temoperature file
+            if "dep" in file:
+                deposition_csv_path =  os.path.join(save_folder_path_data_file, file)# if you want to investigate the deposition potential file
+            if "parameter" in file:
+                parameter_dict_path = os.path.join(save_folder_path_data_file, file)# if you want to investigate the parameter files
+            
+    except:
+        pass
+    
+    # Extract the stability cycling CVs, as well as the ECSA dictionary
+    stability_cycling_CVs, ECSA_dict = extract_CV_data_general_protocol(df=df, 
+                                                                        experiment_name=experiment_name, 
+                                        scan_rates_ECSA_mV_s=[320, 160, 80, 40, 20, 10, 5], # Scan rate for the CVs to estimate ECSA in mV/s
+                                        scan_rates_stability_mV_s=CV_stability_cycling_scan_rate, # Scan rate during stability cycling is 50 mV / s 
+                                        
+                                        )
+    # Get the IR correction as well as the EIS raw data. 
+    IR_correction, EIS_raw_data = extract_GEIS_data_general_protocol(df=df, 
+                                                                     use_GEIS_i_for_IR=0,
+                                        experiment_name=experiment_name, 
+                                        save_plotted_data = False, 
+                                        save_path = save_folder_path_data_file)
+    
+
+    return stability_cycling_CVs, ECSA_dict, IR_correction, EIS_raw_data
+
+
 def extract_all_data_from_experiment(I_stabilities, 
                                      folderpath = "",
                                      savepath_ECSA = "", 
                                      ECSA_json_path = "", 
                                      Stability_json_path = "", 
                                      EIS_json_path = "", 
-                                     ML_goals_dict = None, 
                                      plot_ECSA = False,
                                      use_idxs_for_ECSA = False, 
                         ):
@@ -266,18 +317,11 @@ def extract_all_data_from_experiment(I_stabilities,
                 with open(os.path.join(folderpath, file), 'r') as file:
                     parameter_dict = json.load(file)
                 #print("We make it here")
-                if ML_goals_dict != None:
-                    if check_if_experiment_in_ML_dict(exp_name=exp_name, 
-                                                    ML_goals_dict=ML_goals_dict) == False:
-                        print("Experiment not found in ML dict, skipping", exp_name[-25:])
-                        return None
-
+                
         # Here we get the stability cycling CVs, ECSA_cycling_dicts, IR correction, and raw EIS data
-        stability_cycling_CVs, ECSA_cycling_dict, IR, EIS_raw_data = analyze_data_after_testing(
+        stability_cycling_CVs, ECSA_cycling_dict, IR, EIS_raw_data = extract_CVs_GEIS(
             datafile_path=file_path,
-            CV_stability_cycling_scan_rate=50,
-            return_IR=True, 
-            return_EIS_raw_data = True)
+            CV_stability_cycling_scan_rate=50)
 
         exp_name = list(ECSA_cycling_dict.keys())[0]
 
@@ -316,7 +360,6 @@ def extract_all_data_from_experiment(I_stabilities,
         
         }
         
-
         # Trying to save tje EIS and stability json files 
         save_json_safely(json_path=Stability_json_path, 
                         data = overpotential_evolution)
@@ -339,7 +382,6 @@ def extract_all_data_from_experiment(I_stabilities,
                         exp_name,
                         df)
             
-            
             ECSA_cycling_dict = ECSA_dict
         transform_ECSA_dict_to_ECSA(ECSA_dict=ECSA_cycling_dict, 
                                     save_path_ECSA=savepath_ECSA, 
@@ -352,10 +394,7 @@ def extract_all_data_from_experiment(I_stabilities,
         del df
         del stability_cycling_CVs 
         del ECSA_cycling_dict
-        #except Exception as e:
-        #    print("sdiundfæivjdsoixæjcodævndsfk")
-        #    print(folderpath, e)
-        #    pass
+        
     except Exception as e:
         print("Error loading experiment", e)
 

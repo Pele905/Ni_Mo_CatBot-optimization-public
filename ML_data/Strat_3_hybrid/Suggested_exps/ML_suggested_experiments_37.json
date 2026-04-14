@@ -1,0 +1,20 @@
+{
+    "Iteration 1 06.05.2025_10-52": {
+        "Experiment = 0 Iteration : 0 Suggested Experiment 1 params = [dep current density mA/cm2, deposition time, NiSO4 concentration, deposition temperature] optimizer method = qUpperConfidenceBound, params : 4": [
+            14.809363743133565,
+            546.9605009820384,
+            67.0,
+            0.009999999776482582,
+            0.00800000037997961,
+            0.03500000014901161
+        ],
+        "ML-outputs": {
+            "Acquisition value": -7515.793936154068,
+            "Predicted y": -10284.006739470391,
+            "Prediction uncertainty": 1426.4362230729591,
+            "ML method": "qUpperConfidenceBound",
+            "Model params [beta]": 4
+        }
+    },
+    "Experiment started timestamp": "06.05.2025_10-52"
+}

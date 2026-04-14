@@ -1,0 +1,394 @@
+{
+    "T_test_80C_T_dep_37.0C_dep_density_mA_cm2_82.0_dep_time_s_486.0_roll_while_depositing_True_HCl_dipping_time_s_900_HCl_molarity_3_Retained_electrolyte_False_Protocol_testing_protocol_Ni_Mo_exp_cycle_1_KOH_batch_Batch fabricated 05.3.2025 Pre electrolyzed 72 h 30 wt %_start_time_02.05.2025 at 08:36_experiment_1": {
+        "Current density mA/cm2": 82.0,
+        "Dep time [s]": 486.0,
+        "Dep electrolye T [C]": 36.72,
+        "Conc Mo/Ni 10:1 liquid": 0.26,
+        "Conc Ni/Mo 10:1 liquid": 0.08,
+        "Conc H2SO4": 0.03
+    },
+    "T_test_80C_T_dep_54.0C_dep_density_mA_cm2_131.0_dep_time_s_60.0_roll_while_depositing_True_HCl_dipping_time_s_900_HCl_molarity_3_Retained_electrolyte_False_Protocol_testing_protocol_Ni_Mo_exp_cycle_2_KOH_batch_Batch fabricated 05.3.2025 Pre electrolyzed 72 h 30 wt %_start_time_02.05.2025 at 10:17_experiment_2": {
+        "Current density mA/cm2": 131.0,
+        "Dep time [s]": 60.0,
+        "Dep electrolye T [C]": 54.37,
+        "Conc Mo/Ni 10:1 liquid": 0.158,
+        "Conc Ni/Mo 10:1 liquid": 0.168,
+        "Conc H2SO4": 0.01
+    },
+    "T_test_80C_T_dep_43.0C_dep_density_mA_cm2_95.3_dep_time_s_466.2_roll_while_depositing_True_HCl_dipping_time_s_900_HCl_molarity_3_Retained_electrolyte_False_Protocol_testing_protocol_Ni_Mo_exp_cycle_3_KOH_batch_Batch fabricated 05.3.2025 Pre electrolyzed 72 h 30 wt %_start_time_02.05.2025 at 11:45": {
+        "Current density mA/cm2": 95.3,
+        "Dep time [s]": 466.2,
+        "Dep electrolye T [C]": 43.98,
+        "Conc Mo/Ni 10:1 liquid": 0.23,
+        "Conc Ni/Mo 10:1 liquid": 0.056,
+        "Conc H2SO4": 0.04
+    },
+    "T_test_80C_T_dep_38.0C_dep_density_mA_cm2_40.8_dep_time_s_482.3_roll_while_depositing_True_HCl_dipping_time_s_900_HCl_molarity_3_Retained_electrolyte_False_Protocol_testing_protocol_Ni_Mo_exp_cycle_4_KOH_batch_Batch fabricated 05.3.2025 Pre electrolyzed 72 h 30 wt %_start_time_02.05.2025 at 13:24": {
+        "Current density mA/cm2": 40.8,
+        "Dep time [s]": 482.3,
+        "Dep electrolye T [C]": 38.56,
+        "Conc Mo/Ni 10:1 liquid": 0.174,
+        "Conc Ni/Mo 10:1 liquid": 0.168,
+        "Conc H2SO4": 0.07
+    },
+    "T_test_80C_T_dep_38.0C_dep_density_mA_cm2_24.8_dep_time_s_460.3_roll_while_depositing_True_HCl_dipping_time_s_900_HCl_molarity_3_Retained_electrolyte_False_Protocol_testing_protocol_Ni_Mo_exp_cycle_5_KOH_batch_Batch fabricated 05.3.2025 Pre electrolyzed 72 h 30 wt %_start_time_02.05.2025 at 15:01": {
+        "Current density mA/cm2": 24.8,
+        "Dep time [s]": 460.3,
+        "Dep electrolye T [C]": 38.08,
+        "Conc Mo/Ni 10:1 liquid": 0.276,
+        "Conc Ni/Mo 10:1 liquid": 0.098,
+        "Conc H2SO4": 0.045
+    },
+    "T_test_80C_T_dep_36.0C_dep_density_mA_cm2_116.0_dep_time_s_520.4_roll_while_depositing_True_HCl_dipping_time_s_900_HCl_molarity_3_Retained_electrolyte_False_Protocol_testing_protocol_Ni_Mo_exp_cycle_6_KOH_batch_Batch fabricated 05.3.2025 Pre electrolyzed 72 h 30 wt %_start_time_02.05.2025 at 16:42": {
+        "Current density mA/cm2": 116.0,
+        "Dep time [s]": 520.4,
+        "Dep electrolye T [C]": 36.31,
+        "Conc Mo/Ni 10:1 liquid": 0.22,
+        "Conc Ni/Mo 10:1 liquid": 0.052,
+        "Conc H2SO4": 0.035
+    },
+    "T_test_80C_T_dep_53.0C_dep_density_mA_cm2_122.3_dep_time_s_137.1_roll_while_depositing_True_HCl_dipping_time_s_900_HCl_molarity_3_Retained_electrolyte_False_Protocol_testing_protocol_Ni_Mo_exp_cycle_7_KOH_batch_Batch fabricated 05.3.2025 Pre electrolyzed 72 h 30 wt %_start_time_02.05.2025 at 18:22": {
+        "Current density mA/cm2": 122.3,
+        "Dep time [s]": 137.1,
+        "Dep electrolye T [C]": 52.68,
+        "Conc Mo/Ni 10:1 liquid": 0.212,
+        "Conc Ni/Mo 10:1 liquid": 0.134,
+        "Conc H2SO4": 0.01
+    },
+    "T_test_80C_T_dep_37.0C_dep_density_mA_cm2_24.1_dep_time_s_381.5_roll_while_depositing_True_HCl_dipping_time_s_900_HCl_molarity_3_Retained_electrolyte_False_Protocol_testing_protocol_Ni_Mo_exp_cycle_8_KOH_batch_Batch fabricated 05.3.2025 Pre electrolyzed 72 h 30 wt %_start_time_02.05.2025 at 19:54": {
+        "Current density mA/cm2": 24.1,
+        "Dep time [s]": 381.5,
+        "Dep electrolye T [C]": 40.4,
+        "Conc Mo/Ni 10:1 liquid": 0.176,
+        "Conc Ni/Mo 10:1 liquid": 0.12,
+        "Conc H2SO4": 0.025
+    },
+    "T_test_80C_T_dep_39.0C_dep_density_mA_cm2_41.7_dep_time_s_300.5_roll_while_depositing_True_HCl_dipping_time_s_900_HCl_molarity_3_Retained_electrolyte_False_Protocol_testing_protocol_Ni_Mo_exp_cycle_9_KOH_batch_Batch fabricated 05.3.2025 Pre electrolyzed 72 h 30 wt %_start_time_02.05.2025 at 21:31": {
+        "Current density mA/cm2": 41.7,
+        "Dep time [s]": 300.5,
+        "Dep electrolye T [C]": 38.97,
+        "Conc Mo/Ni 10:1 liquid": 0.242,
+        "Conc Ni/Mo 10:1 liquid": 0.014,
+        "Conc H2SO4": 0.02
+    },
+    "T_test_80C_T_dep_55.0C_dep_density_mA_cm2_93.9_dep_time_s_450.7_roll_while_depositing_True_HCl_dipping_time_s_900_HCl_molarity_3_Retained_electrolyte_False_Protocol_testing_protocol_Ni_Mo_exp_cycle_10_KOH_batch_Batch fabricated 05.3.2025 Pre electrolyzed 72 h 30 wt %_start_time_02.05.2025 at 23:05": {
+        "Current density mA/cm2": 93.9,
+        "Dep time [s]": 450.7,
+        "Dep electrolye T [C]": 54.37,
+        "Conc Mo/Ni 10:1 liquid": 0.212,
+        "Conc Ni/Mo 10:1 liquid": 0.036,
+        "Conc H2SO4": 0.03
+    },
+    "T_test_80C_T_dep_40.0C_dep_density_mA_cm2_18.0_dep_time_s_302.3_roll_while_depositing_True_HCl_dipping_time_s_900_HCl_molarity_3_Retained_electrolyte_False_Protocol_testing_protocol_Ni_Mo_exp_cycle_11_KOH_batch_Batch fabricated 05.3.2025 Pre electrolyzed 72 h 30 wt %_start_time_03.05.2025 at 00:43": {
+        "Current density mA/cm2": 18.0,
+        "Dep time [s]": 302.3,
+        "Dep electrolye T [C]": 42.09,
+        "Conc Mo/Ni 10:1 liquid": 0.084,
+        "Conc Ni/Mo 10:1 liquid": 0.098,
+        "Conc H2SO4": 0.02
+    },
+    "T_test_80C_T_dep_34.0C_dep_density_mA_cm2_48.3_dep_time_s_539.0_roll_while_depositing_True_HCl_dipping_time_s_900_HCl_molarity_3_Retained_electrolyte_False_Protocol_testing_protocol_Ni_Mo_exp_cycle_12_KOH_batch_Batch fabricated 05.3.2025 Pre electrolyzed 72 h 30 wt %_start_time_03.05.2025 at 02:16": {
+        "Current density mA/cm2": 48.3,
+        "Dep time [s]": 539.0,
+        "Dep electrolye T [C]": 34.84,
+        "Conc Mo/Ni 10:1 liquid": 0.324,
+        "Conc Ni/Mo 10:1 liquid": 0.02,
+        "Conc H2SO4": 0.025
+    },
+    "T_test_80C_T_dep_36.0C_dep_density_mA_cm2_61.7_dep_time_s_395.0_roll_while_depositing_True_HCl_dipping_time_s_900_HCl_molarity_3_Retained_electrolyte_False_Protocol_testing_protocol_Ni_Mo_exp_cycle_13_KOH_batch_Batch fabricated 05.3.2025 Pre electrolyzed 72 h 30 wt %_start_time_03.05.2025 at 04:01": {
+        "Current density mA/cm2": 61.7,
+        "Dep time [s]": 395.0,
+        "Dep electrolye T [C]": 35.66,
+        "Conc Mo/Ni 10:1 liquid": 0.126,
+        "Conc Ni/Mo 10:1 liquid": 0.188,
+        "Conc H2SO4": 0.085
+    },
+    "T_test_80C_T_dep_39.0C_dep_density_mA_cm2_97.1_dep_time_s_480.9_roll_while_depositing_True_HCl_dipping_time_s_900_HCl_molarity_3_Retained_electrolyte_False_Protocol_testing_protocol_Ni_Mo_exp_cycle_14_KOH_batch_Batch fabricated 05.3.2025 Pre electrolyzed 72 h 30 wt %_start_time_03.05.2025 at 05:38": {
+        "Current density mA/cm2": 97.1,
+        "Dep time [s]": 480.9,
+        "Dep electrolye T [C]": 38.79,
+        "Conc Mo/Ni 10:1 liquid": 0.24,
+        "Conc Ni/Mo 10:1 liquid": 0.084,
+        "Conc H2SO4": 0.07
+    },
+    "T_test_80C_T_dep_35.0C_dep_density_mA_cm2_55.8_dep_time_s_500.1_roll_while_depositing_True_HCl_dipping_time_s_900_HCl_molarity_3_Retained_electrolyte_False_Protocol_testing_protocol_Ni_Mo_exp_cycle_15_KOH_batch_Batch fabricated 05.3.2025 Pre electrolyzed 72 h 30 wt %_start_time_03.05.2025 at 07:16": {
+        "Current density mA/cm2": 55.8,
+        "Dep time [s]": 500.1,
+        "Dep electrolye T [C]": 35.51,
+        "Conc Mo/Ni 10:1 liquid": 0.086,
+        "Conc Ni/Mo 10:1 liquid": 0.112,
+        "Conc H2SO4": 0.045
+    },
+    "T_test_80C_T_dep_59.0C_dep_density_mA_cm2_93.9_dep_time_s_376.4_roll_while_depositing_True_HCl_dipping_time_s_900_HCl_molarity_3_Retained_electrolyte_False_Protocol_testing_protocol_Ni_Mo_exp_cycle_16_KOH_batch_Batch fabricated 05.3.2025 Pre electrolyzed 72 h 30 wt %_start_time_03.05.2025 at 08:57": {
+        "Current density mA/cm2": 93.9,
+        "Dep time [s]": 376.4,
+        "Dep electrolye T [C]": 59.02,
+        "Conc Mo/Ni 10:1 liquid": 0.264,
+        "Conc Ni/Mo 10:1 liquid": 0.002,
+        "Conc H2SO4": 0.045
+    },
+    "T_test_80C_T_dep_56.0C_dep_density_mA_cm2_105.2_dep_time_s_511.7_roll_while_depositing_True_HCl_dipping_time_s_900_HCl_molarity_3_Retained_electrolyte_False_Protocol_testing_protocol_Ni_Mo_exp_cycle_1_KOH_batch_Batch fabricated 05.01.2025 Pre electrolyzed 72 h 30 wt %_start_time_28.05.2025 at 14:44": {
+        "Current density mA/cm2": 105.2,
+        "Dep time [s]": 511.7,
+        "Dep electrolye T [C]": 54.28,
+        "Conc Mo/Ni 10:1 liquid": 0.176,
+        "Conc Ni/Mo 10:1 liquid": 0.054,
+        "Conc H2SO4": 0.005
+    },
+    "T_test_80C_T_dep_56.0C_dep_density_mA_cm2_86.2_dep_time_s_538.8_roll_while_depositing_True_HCl_dipping_time_s_900_HCl_molarity_3_Retained_electrolyte_False_Protocol_testing_protocol_Ni_Mo_exp_cycle_2_KOH_batch_Batch fabricated 05.01.2025 Pre electrolyzed 72 h 30 wt %_start_time_28.05.2025 at 16:32": {
+        "Current density mA/cm2": 86.2,
+        "Dep time [s]": 538.8,
+        "Dep electrolye T [C]": 54.12,
+        "Conc Mo/Ni 10:1 liquid": 0.146,
+        "Conc Ni/Mo 10:1 liquid": 0.04,
+        "Conc H2SO4": 0.06
+    },
+    "T_test_80C_T_dep_56.0C_dep_density_mA_cm2_110.9_dep_time_s_558.6_roll_while_depositing_True_HCl_dipping_time_s_900_HCl_molarity_3_Retained_electrolyte_False_Protocol_testing_protocol_Ni_Mo_exp_cycle_3_KOH_batch_Batch fabricated 05.01.2025 Pre electrolyzed 72 h 30 wt %_start_time_28.05.2025 at 18:14": {
+        "Current density mA/cm2": 110.9,
+        "Dep time [s]": 558.6,
+        "Dep electrolye T [C]": 54.39,
+        "Conc Mo/Ni 10:1 liquid": 0.114,
+        "Conc Ni/Mo 10:1 liquid": 0.002,
+        "Conc H2SO4": 0.095
+    },
+    "T_test_80C_T_dep_59.0C_dep_density_mA_cm2_55.2_dep_time_s_600.0_roll_while_depositing_True_HCl_dipping_time_s_900_HCl_molarity_3_Retained_electrolyte_False_Protocol_testing_protocol_Ni_Mo_exp_cycle_4_KOH_batch_Batch fabricated 05.01.2025 Pre electrolyzed 72 h 30 wt %_start_time_28.05.2025 at 19:57": {
+        "Current density mA/cm2": 55.2,
+        "Dep time [s]": 600.0,
+        "Dep electrolye T [C]": 57.39,
+        "Conc Mo/Ni 10:1 liquid": 0.1,
+        "Conc Ni/Mo 10:1 liquid": 0.002,
+        "Conc H2SO4": 0.09
+    },
+    "T_test_80C_T_dep_56.0C_dep_density_mA_cm2_98.1_dep_time_s_600.0_roll_while_depositing_True_HCl_dipping_time_s_900_HCl_molarity_3_Retained_electrolyte_False_Protocol_testing_protocol_Ni_Mo_exp_cycle_5_KOH_batch_Batch fabricated 05.01.2025 Pre electrolyzed 72 h 30 wt %_start_time_28.05.2025 at 21:38": {
+        "Current density mA/cm2": 98.1,
+        "Dep time [s]": 600.0,
+        "Dep electrolye T [C]": 54.11,
+        "Conc Mo/Ni 10:1 liquid": 0.128,
+        "Conc Ni/Mo 10:1 liquid": 0.206,
+        "Conc H2SO4": 0.08
+    },
+    "T_test_80C_T_dep_54.0C_dep_density_mA_cm2_94.2_dep_time_s_600.0_roll_while_depositing_True_HCl_dipping_time_s_900_HCl_molarity_3_Retained_electrolyte_False_Protocol_testing_protocol_Ni_Mo_exp_cycle_6_KOH_batch_Batch fabricated 05.01.2025 Pre electrolyzed 72 h 30 wt %_start_time_28.05.2025 at 23:24": {
+        "Current density mA/cm2": 94.2,
+        "Dep time [s]": 600.0,
+        "Dep electrolye T [C]": 50.98,
+        "Conc Mo/Ni 10:1 liquid": 0.028,
+        "Conc Ni/Mo 10:1 liquid": 0.328,
+        "Conc H2SO4": 0.065
+    },
+    "T_test_80C_T_dep_60.0C_dep_density_mA_cm2_95.4_dep_time_s_600.0_roll_while_depositing_True_HCl_dipping_time_s_900_HCl_molarity_3_Retained_electrolyte_False_Protocol_testing_protocol_Ni_Mo_exp_cycle_7_KOH_batch_Batch fabricated 05.01.2025 Pre electrolyzed 72 h 30 wt %_start_time_29.05.2025 at 01:08": {
+        "Current density mA/cm2": 95.4,
+        "Dep time [s]": 600.0,
+        "Dep electrolye T [C]": 59.39,
+        "Conc Mo/Ni 10:1 liquid": 0.064,
+        "Conc Ni/Mo 10:1 liquid": 0.304,
+        "Conc H2SO4": 0.08
+    },
+    "T_test_80C_T_dep_63.0C_dep_density_mA_cm2_93.3_dep_time_s_60.0_roll_while_depositing_True_HCl_dipping_time_s_900_HCl_molarity_3_Retained_electrolyte_False_Protocol_testing_protocol_Ni_Mo_exp_cycle_8_KOH_batch_Batch fabricated 05.01.2025 Pre electrolyzed 72 h 30 wt %_start_time_29.05.2025 at 02:52": {
+        "Current density mA/cm2": 93.3,
+        "Dep time [s]": 60.0,
+        "Dep electrolye T [C]": 60.48,
+        "Conc Mo/Ni 10:1 liquid": 0.054,
+        "Conc Ni/Mo 10:1 liquid": 0.306,
+        "Conc H2SO4": 0.095
+    },
+    "T_test_80C_T_dep_64.0C_dep_density_mA_cm2_95.0_dep_time_s_600.0_roll_while_depositing_True_HCl_dipping_time_s_900_HCl_molarity_3_Retained_electrolyte_False_Protocol_testing_protocol_Ni_Mo_exp_cycle_9_KOH_batch_Batch fabricated 05.01.2025 Pre electrolyzed 72 h 30 wt %_start_time_29.05.2025 at 04:32": {
+        "Current density mA/cm2": 95.0,
+        "Dep time [s]": 600.0,
+        "Dep electrolye T [C]": 63.51,
+        "Conc Mo/Ni 10:1 liquid": 0.002,
+        "Conc Ni/Mo 10:1 liquid": 0.002,
+        "Conc H2SO4": 0.095
+    },
+    "T_test_80C_T_dep_59.0C_dep_density_mA_cm2_145.4_dep_time_s_600.0_roll_while_depositing_True_HCl_dipping_time_s_900_HCl_molarity_3_Retained_electrolyte_False_Protocol_testing_protocol_Ni_Mo_exp_cycle_1_KOH_batch_Batch fabricated 05.01.2025 Pre electrolyzed 72 h 30 wt %_start_time_29.05.2025 at 10:34": {
+        "Current density mA/cm2": 145.4,
+        "Dep time [s]": 600.0,
+        "Dep electrolye T [C]": 58.87,
+        "Conc Mo/Ni 10:1 liquid": 0.03,
+        "Conc Ni/Mo 10:1 liquid": 0.34,
+        "Conc H2SO4": 0.055
+    },
+    "T_test_80C_T_dep_60.0C_dep_density_mA_cm2_63.7_dep_time_s_600.0_roll_while_depositing_True_HCl_dipping_time_s_900_HCl_molarity_3_Retained_electrolyte_False_Protocol_testing_protocol_Ni_Mo_exp_cycle_2_KOH_batch_Batch fabricated 05.01.2025 Pre electrolyzed 72 h 30 wt %_start_time_29.05.2025 at 12:21": {
+        "Current density mA/cm2": 63.7,
+        "Dep time [s]": 600.0,
+        "Dep electrolye T [C]": 58.57,
+        "Conc Mo/Ni 10:1 liquid": 0.05,
+        "Conc Ni/Mo 10:1 liquid": 0.328,
+        "Conc H2SO4": 0.035
+    },
+    "T_test_80C_T_dep_61.0C_dep_density_mA_cm2_127.8_dep_time_s_600.0_roll_while_depositing_True_HCl_dipping_time_s_900_HCl_molarity_3_Retained_electrolyte_False_Protocol_testing_protocol_Ni_Mo_exp_cycle_3_KOH_batch_Batch fabricated 05.01.2025 Pre electrolyzed 72 h 30 wt %_start_time_29.05.2025 at 14:02": {
+        "Current density mA/cm2": 127.8,
+        "Dep time [s]": 600.0,
+        "Dep electrolye T [C]": 60.03,
+        "Conc Mo/Ni 10:1 liquid": 0.07,
+        "Conc Ni/Mo 10:1 liquid": 0.286,
+        "Conc H2SO4": 0.095
+    },
+    "T_test_80C_T_dep_61.0C_dep_density_mA_cm2_101.4_dep_time_s_599.8_roll_while_depositing_True_HCl_dipping_time_s_900_HCl_molarity_3_Retained_electrolyte_False_Protocol_testing_protocol_Ni_Mo_exp_cycle_4_KOH_batch_Batch fabricated 05.01.2025 Pre electrolyzed 72 h 30 wt %_start_time_29.05.2025 at 15:46": {
+        "Current density mA/cm2": 101.4,
+        "Dep time [s]": 599.8,
+        "Dep electrolye T [C]": 60.67,
+        "Conc Mo/Ni 10:1 liquid": 0.002,
+        "Conc Ni/Mo 10:1 liquid": 0.35,
+        "Conc H2SO4": 0.095
+    },
+    "T_test_80C_T_dep_68.0C_dep_density_mA_cm2_197.6_dep_time_s_405.5_roll_while_depositing_True_HCl_dipping_time_s_900_HCl_molarity_3_Retained_electrolyte_False_Protocol_testing_protocol_Ni_Mo_exp_cycle_5_KOH_batch_Batch fabricated 05.01.2025 Pre electrolyzed 72 h 30 wt %_start_time_29.05.2025 at 17:33": {
+        "Current density mA/cm2": 197.6,
+        "Dep time [s]": 405.5,
+        "Dep electrolye T [C]": 66.83,
+        "Conc Mo/Ni 10:1 liquid": 0.004,
+        "Conc Ni/Mo 10:1 liquid": 0.346,
+        "Conc H2SO4": 0.095
+    },
+    "T_test_80C_T_dep_69.0C_dep_density_mA_cm2_87.8_dep_time_s_148.6_roll_while_depositing_True_HCl_dipping_time_s_900_HCl_molarity_3_Retained_electrolyte_False_Protocol_testing_protocol_Ni_Mo_exp_cycle_6_KOH_batch_Batch fabricated 05.01.2025 Pre electrolyzed 72 h 30 wt %_start_time_29.05.2025 at 19:10": {
+        "Current density mA/cm2": 87.8,
+        "Dep time [s]": 148.6,
+        "Dep electrolye T [C]": 68.95,
+        "Conc Mo/Ni 10:1 liquid": 0.002,
+        "Conc Ni/Mo 10:1 liquid": 0.346,
+        "Conc H2SO4": 0.095
+    },
+    "T_test_80C_T_dep_61.0C_dep_density_mA_cm2_70.0_dep_time_s_350.6_roll_while_depositing_True_HCl_dipping_time_s_900_HCl_molarity_3_Retained_electrolyte_False_Protocol_testing_protocol_Ni_Mo_exp_cycle_7_KOH_batch_Batch fabricated 05.01.2025 Pre electrolyzed 72 h 30 wt %_start_time_29.05.2025 at 20:37": {
+        "Current density mA/cm2": 70.0,
+        "Dep time [s]": 350.6,
+        "Dep electrolye T [C]": 60.23,
+        "Conc Mo/Ni 10:1 liquid": 0.004,
+        "Conc Ni/Mo 10:1 liquid": 0.32,
+        "Conc H2SO4": 0.08
+    },
+    "T_test_80C_T_dep_64.0C_dep_density_mA_cm2_100.2_dep_time_s_125.0_roll_while_depositing_True_HCl_dipping_time_s_900_HCl_molarity_3_Retained_electrolyte_False_Protocol_testing_protocol_Ni_Mo_exp_cycle_8_KOH_batch_Batch fabricated 05.01.2025 Pre electrolyzed 72 h 30 wt %_start_time_29.05.2025 at 22:14": {
+        "Current density mA/cm2": 100.2,
+        "Dep time [s]": 125.0,
+        "Dep electrolye T [C]": 62.88,
+        "Conc Mo/Ni 10:1 liquid": 0.02,
+        "Conc Ni/Mo 10:1 liquid": 0.3,
+        "Conc H2SO4": 0.075
+    },
+    "T_test_80C_T_dep_64.0C_dep_density_mA_cm2_173.2_dep_time_s_588.2_roll_while_depositing_True_HCl_dipping_time_s_900_HCl_molarity_3_Retained_electrolyte_False_Protocol_testing_protocol_Ni_Mo_exp_cycle_9_KOH_batch_Batch fabricated 05.01.2025 Pre electrolyzed 72 h 30 wt %_start_time_29.05.2025 at 23:43": {
+        "Current density mA/cm2": 173.2,
+        "Dep time [s]": 588.2,
+        "Dep electrolye T [C]": 62.23,
+        "Conc Mo/Ni 10:1 liquid": 0.12,
+        "Conc Ni/Mo 10:1 liquid": 0.198,
+        "Conc H2SO4": 0.01
+    },
+    "T_test_80C_T_dep_69.0C_dep_density_mA_cm2_186.8_dep_time_s_177.3_roll_while_depositing_True_HCl_dipping_time_s_900_HCl_molarity_3_Retained_electrolyte_False_Protocol_testing_protocol_Ni_Mo_exp_cycle_10_KOH_batch_Batch fabricated 05.01.2025 Pre electrolyzed 72 h 30 wt %_start_time_30.05.2025 at 01:31": {
+        "Current density mA/cm2": 186.8,
+        "Dep time [s]": 177.3,
+        "Dep electrolye T [C]": 67.11,
+        "Conc Mo/Ni 10:1 liquid": 0.004,
+        "Conc Ni/Mo 10:1 liquid": 0.34,
+        "Conc H2SO4": 0.0
+    },
+    "T_test_80C_T_dep_69.0C_dep_density_mA_cm2_58.8_dep_time_s_332.5_roll_while_depositing_True_HCl_dipping_time_s_900_HCl_molarity_3_Retained_electrolyte_False_Protocol_testing_protocol_Ni_Mo_exp_cycle_11_KOH_batch_Batch fabricated 05.01.2025 Pre electrolyzed 72 h 30 wt %_start_time_30.05.2025 at 03:03": {
+        "Current density mA/cm2": 58.8,
+        "Dep time [s]": 332.5,
+        "Dep electrolye T [C]": 70.2,
+        "Conc Mo/Ni 10:1 liquid": 0.002,
+        "Conc Ni/Mo 10:1 liquid": 0.358,
+        "Conc H2SO4": 0.095
+    },
+    "T_test_80C_T_dep_57.0C_dep_density_mA_cm2_75.9_dep_time_s_415.9_roll_while_depositing_True_HCl_dipping_time_s_900_HCl_molarity_3_Retained_electrolyte_False_Protocol_testing_protocol_Ni_Mo_exp_cycle_12_KOH_batch_Batch fabricated 05.01.2025 Pre electrolyzed 72 h 30 wt %_start_time_30.05.2025 at 04:39": {
+        "Current density mA/cm2": 75.9,
+        "Dep time [s]": 415.9,
+        "Dep electrolye T [C]": 56.07,
+        "Conc Mo/Ni 10:1 liquid": 0.016,
+        "Conc Ni/Mo 10:1 liquid": 0.27,
+        "Conc H2SO4": 0.03
+    },
+    "T_test_80C_T_dep_65.0C_dep_density_mA_cm2_135.4_dep_time_s_470.9_roll_while_depositing_True_HCl_dipping_time_s_900_HCl_molarity_3_Retained_electrolyte_False_Protocol_testing_protocol_Ni_Mo_exp_cycle_13_KOH_batch_Batch fabricated 05.01.2025 Pre electrolyzed 72 h 30 wt %_start_time_30.05.2025 at 06:16": {
+        "Current density mA/cm2": 135.4,
+        "Dep time [s]": 470.9,
+        "Dep electrolye T [C]": 63.63,
+        "Conc Mo/Ni 10:1 liquid": 0.072,
+        "Conc Ni/Mo 10:1 liquid": 0.142,
+        "Conc H2SO4": 0.045
+    },
+    "T_test_80C_T_dep_57.0C_dep_density_mA_cm2_8.8_dep_time_s_299.2_roll_while_depositing_True_HCl_dipping_time_s_900_HCl_molarity_3_Retained_electrolyte_False_Protocol_testing_protocol_Ni_Mo_exp_cycle_14_KOH_batch_Batch fabricated 05.01.2025 Pre electrolyzed 72 h 30 wt %_start_time_30.05.2025 at 07:57": {
+        "Current density mA/cm2": 8.8,
+        "Dep time [s]": 299.2,
+        "Dep electrolye T [C]": 56.61,
+        "Conc Mo/Ni 10:1 liquid": 0.004,
+        "Conc Ni/Mo 10:1 liquid": 0.352,
+        "Conc H2SO4": 0.085
+    },
+    "T_test_80C_T_dep_66.0C_dep_density_mA_cm2_32.0_dep_time_s_387.4_roll_while_depositing_True_HCl_dipping_time_s_900_HCl_molarity_3_Retained_electrolyte_False_Protocol_testing_protocol_Ni_Mo_exp_cycle_15_KOH_batch_Batch fabricated 05.01.2025 Pre electrolyzed 72 h 30 wt %_start_time_30.05.2025 at 09:30": {
+        "Current density mA/cm2": 32.0,
+        "Dep time [s]": 387.4,
+        "Dep electrolye T [C]": 64.9,
+        "Conc Mo/Ni 10:1 liquid": 0.008,
+        "Conc Ni/Mo 10:1 liquid": 0.318,
+        "Conc H2SO4": 0.09
+    },
+    "T_test_80C_T_dep_67.0C_dep_density_mA_cm2_153.5_dep_time_s_321.9_roll_while_depositing_True_HCl_dipping_time_s_900_HCl_molarity_3_Retained_electrolyte_False_Protocol_testing_protocol_Ni_Mo_exp_cycle_16_KOH_batch_Batch fabricated 05.01.2025 Pre electrolyzed 72 h 30 wt %_start_time_30.05.2025 at 11:11": {
+        "Current density mA/cm2": 153.5,
+        "Dep time [s]": 321.9,
+        "Dep electrolye T [C]": 65.8,
+        "Conc Mo/Ni 10:1 liquid": 0.002,
+        "Conc Ni/Mo 10:1 liquid": 0.33,
+        "Conc H2SO4": 0.08
+    },
+    "T_test_80C_T_dep_69.0C_dep_density_mA_cm2_197.0_dep_time_s_559.4_roll_while_depositing_True_HCl_dipping_time_s_900_HCl_molarity_3_Retained_electrolyte_False_Protocol_testing_protocol_Ni_Mo_exp_cycle_17_KOH_batch_Batch fabricated 05.01.2025 Pre electrolyzed 72 h 30 wt %_start_time_30.05.2025 at 12:45": {
+        "Current density mA/cm2": 197.0,
+        "Dep time [s]": 559.4,
+        "Dep electrolye T [C]": 67.59,
+        "Conc Mo/Ni 10:1 liquid": 0.084,
+        "Conc Ni/Mo 10:1 liquid": 0.146,
+        "Conc H2SO4": 0.05
+    },
+    "T_test_80C_T_dep_69.0C_dep_density_mA_cm2_119.5_dep_time_s_600.0_roll_while_depositing_True_HCl_dipping_time_s_900_HCl_molarity_3_Retained_electrolyte_False_Protocol_testing_protocol_Ni_Mo_upper_anodic_limit_0.4_exp_cycle_1_KOH_batch_Batch fabricated 05.01.2025 Pre electrolyzed 72 h 30 wt %_start_time_23.07.2025 at 20:49": {
+        "Current density mA/cm2": 119.5,
+        "Dep time [s]": 600.0,
+        "Dep electrolye T [C]": 67.71,
+        "Conc Mo/Ni 10:1 liquid": 0.002,
+        "Conc Ni/Mo 10:1 liquid": 0.152,
+        "Conc H2SO4": 0.02
+    },
+    "T_test_80C_T_dep_69.0C_dep_density_mA_cm2_45.0_dep_time_s_132.5_roll_while_depositing_True_HCl_dipping_time_s_900_HCl_molarity_3_Retained_electrolyte_False_Protocol_testing_protocol_Ni_Mo_upper_anodic_limit_0.4_exp_cycle_2_KOH_batch_Batch fabricated 05.01.2025 Pre electrolyzed 72 h 30 wt %_start_time_23.07.2025 at 22:44": {
+        "Current density mA/cm2": 45.0,
+        "Dep time [s]": 132.5,
+        "Dep electrolye T [C]": 67.23,
+        "Conc Mo/Ni 10:1 liquid": 0.002,
+        "Conc Ni/Mo 10:1 liquid": 0.34,
+        "Conc H2SO4": 0.03
+    },
+    "T_test_80C_T_dep_68.0C_dep_density_mA_cm2_197.9_dep_time_s_598.6_roll_while_depositing_True_HCl_dipping_time_s_900_HCl_molarity_3_Retained_electrolyte_False_Protocol_testing_protocol_Ni_Mo_upper_anodic_limit_0.4_exp_cycle_3_KOH_batch_Batch fabricated 05.01.2025 Pre electrolyzed 72 h 30 wt %_start_time_24.07.2025 at 00:11": {
+        "Current density mA/cm2": 197.9,
+        "Dep time [s]": 598.6,
+        "Dep electrolye T [C]": 67.33,
+        "Conc Mo/Ni 10:1 liquid": 0.01,
+        "Conc Ni/Mo 10:1 liquid": 0.354,
+        "Conc H2SO4": 0.055
+    },
+    "T_test_80C_T_dep_63.0C_dep_density_mA_cm2_200.0_dep_time_s_501.1_roll_while_depositing_True_HCl_dipping_time_s_900_HCl_molarity_3_Retained_electrolyte_False_Protocol_testing_protocol_Ni_Mo_upper_anodic_limit_0.4_exp_cycle_4_KOH_batch_Batch fabricated 05.01.2025 Pre electrolyzed 72 h 30 wt %_start_time_24.07.2025 at 01:55": {
+        "Current density mA/cm2": 200.0,
+        "Dep time [s]": 501.1,
+        "Dep electrolye T [C]": 61.92,
+        "Conc Mo/Ni 10:1 liquid": 0.002,
+        "Conc Ni/Mo 10:1 liquid": 0.358,
+        "Conc H2SO4": 0.0
+    },
+    "T_test_80C_T_dep_68.0C_dep_density_mA_cm2_184.2_dep_time_s_392.2_roll_while_depositing_True_HCl_dipping_time_s_900_HCl_molarity_3_Retained_electrolyte_False_Protocol_testing_protocol_Ni_Mo_upper_anodic_limit_0.4_exp_cycle_5_KOH_batch_Batch fabricated 05.01.2025 Pre electrolyzed 72 h 30 wt %_start_time_24.07.2025 at 03:35": {
+        "Current density mA/cm2": 184.2,
+        "Dep time [s]": 392.2,
+        "Dep electrolye T [C]": 66.52,
+        "Conc Mo/Ni 10:1 liquid": 0.092,
+        "Conc Ni/Mo 10:1 liquid": 0.146,
+        "Conc H2SO4": 0.075
+    },
+    "T_test_80C_T_dep_68.0C_dep_density_mA_cm2_163.3_dep_time_s_340.6_roll_while_depositing_True_HCl_dipping_time_s_900_HCl_molarity_3_Retained_electrolyte_False_Protocol_testing_protocol_Ni_Mo_upper_anodic_limit_0.4_exp_cycle_6_KOH_batch_Batch fabricated 05.01.2025 Pre electrolyzed 72 h 30 wt %_start_time_24.07.2025 at 05:14": {
+        "Current density mA/cm2": 163.3,
+        "Dep time [s]": 340.6,
+        "Dep electrolye T [C]": 66.37,
+        "Conc Mo/Ni 10:1 liquid": 0.114,
+        "Conc Ni/Mo 10:1 liquid": 0.082,
+        "Conc H2SO4": 0.03
+    },
+    "T_test_80C_T_dep_45.0C_dep_density_mA_cm2_186.8_dep_time_s_380.7_roll_while_depositing_True_HCl_dipping_time_s_900_HCl_molarity_3_Retained_electrolyte_False_Protocol_testing_protocol_Ni_Mo_upper_anodic_limit_0.4_exp_cycle_7_KOH_batch_Batch fabricated 05.01.2025 Pre electrolyzed 72 h 30 wt %_start_time_24.07.2025 at 06:52": {
+        "Current density mA/cm2": 186.8,
+        "Dep time [s]": 380.7,
+        "Dep electrolye T [C]": 46.43,
+        "Conc Mo/Ni 10:1 liquid": 0.024,
+        "Conc Ni/Mo 10:1 liquid": 0.156,
+        "Conc H2SO4": 0.05
+    }
+}

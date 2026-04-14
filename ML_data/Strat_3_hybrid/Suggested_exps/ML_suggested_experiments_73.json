@@ -1,0 +1,20 @@
+{
+    "Iteration 1 10.05.2025_07-16": {
+        "Experiment = 0 Iteration : 9 Suggested Experiment 1 params = [dep current density mA/cm2, deposition time, NiSO4 concentration, deposition temperature] optimizer method = qMaxValueEntropySearch, params : 0": [
+            28.972334691928204,
+            342.45545388408914,
+            44.0,
+            0.11800000071525574,
+            0.07599999755620956,
+            0.019999999552965164
+        ],
+        "ML-outputs": {
+            "Acquisition value": 1.7300556494959096e-05,
+            "Predicted y": -26769.951019247266,
+            "Prediction uncertainty": 1732.686243559529,
+            "ML method": "qMaxValueEntropySearch",
+            "Model params [beta]": 0
+        }
+    },
+    "Experiment started timestamp": "10.05.2025_07-16"
+}

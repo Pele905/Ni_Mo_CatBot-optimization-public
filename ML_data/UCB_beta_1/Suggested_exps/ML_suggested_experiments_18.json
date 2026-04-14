@@ -1,0 +1,22 @@
+{
+    "Iteration 1 31.05.2025_18-22": {
+        "Experiment = 0 Iteration : 16 Suggested Experiment 1 params = [dep current density mA/cm2, deposition time, NiSO4 concentration, deposition temperature] optimizer method = qUCB_beta_1, params : {'strategy': 'UCB_1'}": [
+            97.19743916203451,
+            580.7640894138227,
+            65.0,
+            0.10399999469518661,
+            0.06199999898672104,
+            0.02500000037252903
+        ],
+        "ML-outputs": {
+            "Acquisition value": -9680.897701543145,
+            "Predicted y": -11102.903954467092,
+            "Prediction uncertainty": 1694.6749977175791,
+            "ML method": "qUCB_beta_1",
+            "Model params [beta]": {
+                "strategy": "UCB_1"
+            }
+        }
+    },
+    "Experiment started timestamp": "31.05.2025_18-22"
+}

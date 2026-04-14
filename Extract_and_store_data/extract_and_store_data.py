@@ -9,31 +9,27 @@ import time
 import gc
 import os
 from pathlib import Path
-###############################################################################
-### WARNING:
-### Due to a software update on 26 January, this script is only compatible
-### with data generated prior to this date.
-###############################################################################
 
 
+# Folders where you store the UCB beta = 1, UCB beta = 5, and Strategy 3 (Hybridg strategies)
 # List where the datasets are 
-#data_first_set = "/Volumes/Raw_lab_data/B310/323-Electrochemistry/3413-Catbot-3425/EC_data_CatBot/Ni_Mo_optimization_run_01_05_25"
-#data_beta_5 = "/Volumes/Raw_lab_data/B310/323-Electrochemistry/3413-Catbot-3425/EC_data_CatBot/Ni_Mo_Optimization_Jonas/Beta_5"
+data_hybrid = "/Volumes/Raw_lab_data/B310/323-Electrochemistry/3413-Catbot-3425/EC_data_CatBot/Ni_Mo_optimization_run_01_05_25"
+data_beta_5 = "/Volumes/Raw_lab_data/B310/323-Electrochemistry/3413-Catbot-3425/EC_data_CatBot/Ni_Mo_Optimization_Jonas/Beta_5"
 data_beta_1 = "/Volumes/Raw_lab_data/B310/323-Electrochemistry/3413-Catbot-3425/EC_data_CatBot/Ni_Mo_Optimization_Jonas/Beta_1"
 
 root_save_path_json = "/Users/pvifr/Desktop/ElectrochemicalDataAnalysis/Ni_Mo_CatBot optimization public/Datasets"
 
-keywords = ["Ni_Mo_beta_1"] #["Ni_Mo_beta_5", "Ni_Mo_beta_1", "Ni_Mo_og"]
+keywords = ["Ni_Mo_hybrid", "Ni_Mo_beta_1", "Ni_Mo_beta_5"]
 
 folders = [
-    #data_first_set,
+    data_hybrid,
     data_beta_1, 
-    #data_beta_5
+    data_beta_5
 ]
 
 for folder, keyword in zip(folders, keywords):
     
-    keywords = ["Ni_Mo_beta_1"] #["Ni_Mo_og", "Ni_Mo_beta_1", "Ni_Mo_beta_5"]
+    
     ECSA_json = os.path.join(root_save_path_json, f"ECSA_complete_{keyword}.json")
     EIS_json = os.path.join(root_save_path_json, f"EIS_complete_{keyword}.json")
     Stability_json = os.path.join(root_save_path_json, f"Stability_complete_{keyword}.json")

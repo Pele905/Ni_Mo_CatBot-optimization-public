@@ -16,7 +16,7 @@ Run the following script:
 
     python extract_and_store_raw_data.py
 
-**Important:**  
+**Note:**  
 Make sure to update the data directory in the script so it matches the location of the data on your machine.
 
 ## Output
