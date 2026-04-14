@@ -23,7 +23,7 @@ data_beta_1 = "/Volumes/Raw_lab_data/B310/323-Electrochemistry/3413-Catbot-3425/
 
 root_save_path_json = "/Users/pvifr/Desktop/ElectrochemicalDataAnalysis/Ni_Mo_CatBot optimization public/Datasets"
 
-keywords = ["Ni_Mo_beta_5", "Ni_Mo_beta_1", "Ni_Mo_og"]
+keywords = ["Ni_Mo_beta_1"] #["Ni_Mo_beta_5", "Ni_Mo_beta_1", "Ni_Mo_og"]
 
 folders = [
     #data_first_set,
@@ -33,7 +33,7 @@ folders = [
 
 for folder, keyword in zip(folders, keywords):
     
-    keywords = ["Ni_Mo_og", "Ni_Mo_beta_1", "Ni_Mo_beta_5"]
+    keywords = ["Ni_Mo_beta_1"] #["Ni_Mo_og", "Ni_Mo_beta_1", "Ni_Mo_beta_5"]
     ECSA_json = os.path.join(root_save_path_json, f"ECSA_complete_{keyword}.json")
     EIS_json = os.path.join(root_save_path_json, f"EIS_complete_{keyword}.json")
     Stability_json = os.path.join(root_save_path_json, f"Stability_complete_{keyword}.json")
