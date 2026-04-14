@@ -40,7 +40,7 @@ To explore and analyze the optimization results, open:
 
 - `Ni_Mo_data_analysis.ipynb`
 
-This notebook provides an overview of the optimization runs and their outcomes.
+This notebook provides an overview of the optimization runs and their outcomes. Data is stored under the folder "ML_data"
 
 For more detailed analysis, use:
 
