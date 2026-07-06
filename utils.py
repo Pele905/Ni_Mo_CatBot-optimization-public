@@ -398,3 +398,102 @@ def extract_all_data_from_experiment(I_stabilities,
     except Exception as e:
         print("Error loading experiment", e)
 
+
+def extract_subprotocols_with_idxs(parameter_dict_file, 
+                                   ):
+    '''
+        This function extracts all the subprotocols of a protocol dictionary such that it sorts the ECSA CVs (before and after) as well as 
+        GEIS, LSV etc
+    '''
+    with open(parameter_dict_file, "r") as f:
+        parameter_dict = json.load(f)
+    
+    for key in parameter_dict.keys():
+        if ".csv" in key:
+            experiment_name = key
+    protocol_dict = parameter_dict[experiment_name]["Testing protocol"]["testing protocol dict"]
+
+    idx_blocks = [] # This function can easily be implemented in the robot... then we dont have to deal with idxs ourselves 
+
+    idx_initial = 1
+    idx_final = idx_initial
+
+    for block in protocol_dict:
+        repeat_exp_n_times = int(block["num_repeats"])
+        
+        # For some reason, the 
+        if block["protocol"] == "GEIS":
+            start_freq = int(block['variables']["startFrequency"])
+            end_freq = int(block['variables']["endFrequency"])
+            steps_per_decade = int(block['variables']["stepsPerDecade"])
+            idx_shifts = int(np.log10(start_freq / end_freq) * steps_per_decade + 1)
+            idx_final += idx_shifts * repeat_exp_n_times
+        
+        else:
+            idx_final += repeat_exp_n_times
+
+        idx_blocks.append([block, idx_initial, idx_final - 1])
+        idx_initial = idx_final
+
+        
+    return idx_blocks
+
+
+def extract_subprotocol_data(df, subprotocol_idxs, selected_comment, selected_protocol="CV", geometric_surface_area=0.975):
+
+
+    """
+    Extract current, voltage, and time data for matching subprotocol blocks.
+    Returns data in a clear dictionary structure for easy access.
+    """
+    selected_data = []
+    
+    # Pre-calculate conversion factors to get them in mA/cm2 and WE_V
+    current_factor = 1000 / geometric_surface_area
+    voltage_factor = 1000
+    
+    for block, idx_initial, idx_final in subprotocol_idxs:
+        if block["comment"] != selected_comment or block["protocol"] != selected_protocol:
+            continue
+        
+        block_mask = (df["Step number"] >= idx_initial) & (df["Step number"] <= idx_final)
+        
+        scans = []
+        for step_num in range(idx_initial, idx_final + 1):
+            step_mask = block_mask & (df["Step number"] == step_num)
+            
+            if not step_mask.any():
+                continue
+            
+            # Extract data
+            I_mA_cm2 = df.loc[step_mask, 'Current [A]'].to_numpy() * current_factor
+            WE_mV = df.loc[step_mask, 'Working Electrode Voltage [V]'].to_numpy() * voltage_factor
+            time_s = df.loc[step_mask, 'Timestamp'].to_numpy()
+            freq = df.loc[step_mask, 'Frequency [Hz]'].to_numpy()
+            
+            # Build scan dictionary
+            scan = {
+                'current_density [mA/cm2]': I_mA_cm2,
+                'voltage [mV]': WE_mV,
+                'time [s]': time_s,
+                'step_number': step_num,
+            }
+            
+            # Add EIS data if present
+            if np.sum(freq) != 0:
+                scan['frequency [Hz]'] = freq
+                scan['Re_Z'] = df.loc[step_mask, 'Re_Z'].to_numpy()
+                scan['Im_Z'] = df.loc[step_mask, 'Im_Z'].to_numpy()
+                scan['is_eis'] = True
+            else:
+                scan['is_eis'] = False
+            
+            scans.append(scan)
+        
+        if scans:
+            selected_data.append({
+                'params': block,
+                'data': scans
+            })
+    
+    return selected_data

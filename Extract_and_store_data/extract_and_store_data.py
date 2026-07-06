@@ -13,9 +13,10 @@ from pathlib import Path
 
 # Folders where you store the UCB beta = 1, UCB beta = 5, and Strategy 3 (Hybridg strategies)
 # List where the datasets are 
-data_hybrid = "/Volumes/Raw_lab_data/B310/323-Electrochemistry/3413-Catbot-3425/EC_data_CatBot/Ni_Mo_optimization_run_01_05_25"
-data_beta_5 = "/Volumes/Raw_lab_data/B310/323-Electrochemistry/3413-Catbot-3425/EC_data_CatBot/Ni_Mo_Optimization_Jonas/Beta_5"
-data_beta_1 = "/Volumes/Raw_lab_data/B310/323-Electrochemistry/3413-Catbot-3425/EC_data_CatBot/Ni_Mo_Optimization_Jonas/Beta_1"
+root_path = "/Volumes/ENRGK/Raw_lab_data/B313/307-Automated Synthesis/3413-Catbot-3425/EC_data_CatBot"
+data_hybrid = root_path + "/Ni_Mo_optimization_run_01_05_25"
+data_beta_5 = root_path + "/Ni_Mo_Optimization_Jonas/Beta_5"
+data_beta_1 = root_path + "/Ni_Mo_Optimization_Jonas/Beta_1"
 
 root_save_path_json = "/Users/pvifr/Desktop/ElectrochemicalDataAnalysis/Ni_Mo_CatBot optimization public/Datasets"
 
@@ -38,7 +39,7 @@ for folder, keyword in zip(folders, keywords):
         if "exp" in subfolder:
             
             init = time.time()
-            extract_all_data_from_experiment(I_stabilities=[100, 10, 1], 
+            extract_all_data_from_experiment(I_stabilities=[100, 50, 20, 15, 10, 5, 2, 1, 0.5], 
                                             folderpath=os.path.join(folder, subfolder), 
                                             ECSA_json_path=ECSA_json ,
                                             Stability_json_path=Stability_json, 
