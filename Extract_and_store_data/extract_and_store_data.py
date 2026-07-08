@@ -18,6 +18,8 @@ data_hybrid = root_path + "/Ni_Mo_optimization_run_01_05_25"
 data_beta_5 = root_path + "/Ni_Mo_Optimization_Jonas/Beta_5"
 data_beta_1 = root_path + "/Ni_Mo_Optimization_Jonas/Beta_1"
 
+data_random = "Datasets/Random_test" #root_path + "/NiMo optimizations all/First review/Random experiments baseline"
+
 root_save_path_json = "/Users/pvifr/Desktop/ElectrochemicalDataAnalysis/Ni_Mo_CatBot optimization public/Datasets"
 
 keywords = ["Ni_Mo_hybrid", "Ni_Mo_beta_1", "Ni_Mo_beta_5"]
@@ -28,8 +30,33 @@ folders = [
     data_beta_5
 ]
 
-for folder, keyword in zip(folders, keywords):
-    
+if 1 == 2:
+    for folder, keyword in zip(folders, keywords):
+        
+        
+        ECSA_json = os.path.join(root_save_path_json, f"ECSA_complete_{keyword}.json")
+        EIS_json = os.path.join(root_save_path_json, f"EIS_complete_{keyword}.json")
+        Stability_json = os.path.join(root_save_path_json, f"Stability_complete_{keyword}.json")
+
+        for subfolder in os.listdir(folder):
+            if "exp" in subfolder:
+                
+                init = time.time()
+                extract_all_data_from_experiment(I_stabilities=[100, 50, 20, 15, 10, 5, 2, 1, 0.5], 
+                                                folderpath=os.path.join(folder, subfolder), 
+                                                ECSA_json_path=ECSA_json ,
+                                                Stability_json_path=Stability_json, 
+                                                EIS_json_path=EIS_json, 
+                                                use_idxs_for_ECSA=False)
+
+                total_processing_time = time.time() - init
+                print("Processing time:", total_processing_time)
+
+                gc.collect()
+                
+
+# Random experimentation
+for folder, keyword in zip([data_random], ["random"]):
     
     ECSA_json = os.path.join(root_save_path_json, f"ECSA_complete_{keyword}.json")
     EIS_json = os.path.join(root_save_path_json, f"EIS_complete_{keyword}.json")
@@ -39,15 +66,13 @@ for folder, keyword in zip(folders, keywords):
         if "exp" in subfolder:
             
             init = time.time()
-            extract_all_data_from_experiment(I_stabilities=[100, 50, 20, 15, 10, 5, 2, 1, 0.5], 
+            extract_data_from_Ni_Mo_v2(current_densities_stability=[100, 50, 20, 15, 10, 5, 2, 1, 0.5], 
                                             folderpath=os.path.join(folder, subfolder), 
                                             ECSA_json_path=ECSA_json ,
                                             Stability_json_path=Stability_json, 
-                                            EIS_json_path=EIS_json, 
-                                            use_idxs_for_ECSA=False)
+                                            EIS_json_path=EIS_json)
 
             total_processing_time = time.time() - init
             print("Processing time:", total_processing_time)
 
             gc.collect()
-            

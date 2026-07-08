@@ -29,6 +29,19 @@ def get_df_from_ML_optimization(
         "qUpperConfidence_beta": ("meta", "beta"),
     }
 
+    DEFAULT_FEATURE_SET_v2 = {
+        "NiSO4 (mol/L)": ("input", "liquid5"),
+        "Na2Mo (mol/L)": ("input", "liquid6"),
+        "H2SO4 (mol/L)": ("input", "liquid4"),
+        "Dep t (s)": ("input", 'Deposition time [s]'),
+        "Dep I (mA/cm²)": ("input", 'Deposition current density [mA/cm2]'),
+        "Dep T (C)": ("input", 'Temperature_deposition [C]'),
+        "integrated_area": ("goal", "Integrated stability at 10 [mA/cm2]"),
+        "ML_optimization": ("meta", "ML_optimization"),
+        "timestamp": ("meta", "timestamp"),
+        "qUpperConfidence_beta": ("meta", "beta"),
+    }
+
     if feature_set is None:
         feature_set = DEFAULT_FEATURE_SET
 
@@ -82,55 +95,90 @@ def get_df_from_ML_optimization(
     # ================================================================
     # Main loop
     # ================================================================
+    i = 0
     for experiment_i_goals, experiment_i_inp in zip(goal_params, input_params):
+        try: # Here if it fails, it means that we dont have the timestamp in the goal setting...
+            timestamp_str_exp_i = experiment_i_goals.split("start_time_")[-1].split("_")[0]
+            dt = datetime.strptime(timestamp_str_exp_i, "%d.%m.%Y at %H:%M")
+            formatted = dt.strftime("%d.%m.%Y_%H-%M")
 
-        timestamp_str_exp_i = experiment_i_goals.split("start_time_")[-1].split("_")[0]
-        dt = datetime.strptime(timestamp_str_exp_i, "%d.%m.%Y at %H:%M")
-        formatted = dt.strftime("%d.%m.%Y_%H-%M")
+            beta_value = find_beta_near(dt)
 
-        beta_value = find_beta_near(dt)
-
-        if beta_value == 0:
-            ML_optimization = "qMaxValueEntropySearch"
-        else:
-            ML_optimization = "qUpperConfidenceBound"
-
-        # ------------------------------------------------------------
-        # Feature construction (default or user-defined)
-        # ------------------------------------------------------------
-        features = {}
-
-        for feature_name, spec in feature_set.items():
-
-            if callable(spec):
-                features[feature_name] = spec(
-                    input_params[experiment_i_inp],
-                    goal_params[experiment_i_goals],
-                    beta_value,
-                    formatted,
-                    ML_optimization,
-                )
-
+            if beta_value == 0:
+                ML_optimization = "qMaxValueEntropySearch"
             else:
-                source, key = spec
+                ML_optimization = "qUpperConfidenceBound"
 
-                if source == "input":
-                    features[feature_name] = input_params[experiment_i_inp][key]
+            # ------------------------------------------------------------
+            # Feature construction (default or user-defined)
+            # ------------------------------------------------------------
+            features = {}
 
-                elif source == "goal":
-                    features[feature_name] = goal_params[experiment_i_goals][key]
+            for feature_name, spec in feature_set.items():
 
-                elif source == "meta":
-                    if key == "timestamp":
-                        features[feature_name] = formatted
-                    elif key == "beta":
-                        features[feature_name] = beta_value
-                    elif key == "ML_optimization":
-                        features[feature_name] = ML_optimization
+                if callable(spec):
+                    features[feature_name] = spec(
+                        input_params[experiment_i_inp],
+                        goal_params[experiment_i_goals],
+                        beta_value,
+                        formatted,
+                        ML_optimization,
+                    )
 
-        data_rows.append(features)
+                else:
+                    source, key = spec
 
+                    if source == "input":
+                        features[feature_name] = input_params[experiment_i_inp][key]
 
+                    elif source == "goal":
+                        features[feature_name] = goal_params[experiment_i_goals][key]
+
+                    elif source == "meta":
+                        if key == "timestamp":
+                            features[feature_name] = formatted
+                        elif key == "beta":
+                            features[feature_name] = beta_value
+                        elif key == "ML_optimization":
+                            features[feature_name] = ML_optimization
+
+            data_rows.append(features)
+
+        except:
+            features = {}
+            ML_optimization = "Random"
+            beta_value = 0
+            formatted = i
+            for feature_name, spec in DEFAULT_FEATURE_SET_v2.items():
+                if callable(spec):
+                    
+                    features[feature_name] = spec(
+                        input_params[experiment_i_inp],
+                        goal_params[experiment_i_goals],
+                        beta_value,
+                        formatted,
+                        ML_optimization,
+                    )
+                    
+                else:
+                    source, key = spec
+                    print(input_params[experiment_i_inp], " THis is input params", spec)
+                    if source == "input":
+                        features[feature_name] = input_params[experiment_i_inp][key]
+
+                    elif source == "goal":
+                        features[feature_name] = goal_params[experiment_i_goals][key]
+
+                    elif source == "meta":
+                        if key == "timestamp":
+                            features[feature_name] = formatted
+                        elif key == "beta":
+                            features[feature_name] = beta_value
+                        elif key == "ML_optimization":
+                            features[feature_name] = ML_optimization
+
+            data_rows.append(features)
+            i += 1
     # Convert to DataFrame
     df = pd.DataFrame(data_rows)
 
@@ -138,3 +186,6 @@ def get_df_from_ML_optimization(
     df = df[df["integrated_area"] != 0]
 
     return df
+
+
+

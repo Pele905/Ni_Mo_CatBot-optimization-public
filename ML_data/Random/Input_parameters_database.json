@@ -1,0 +1,170 @@
+{
+    "422508fe-7ba3-4352-924f-b2a8cf023f9e": {
+        "Deposition current density [mA/cm2]": 103.0,
+        "Deposition time [s]": 495.0,
+        "Temperature_deposition [C]": 58.0,
+        "liquid4": 1.05,
+        "liquid5": 7.95,
+        "liquid6": 5.325
+    },
+    "082567bc-8319-4f68-b0dd-c6777e6e7838": {
+        "Deposition current density [mA/cm2]": 188.0,
+        "Deposition time [s]": 336.0,
+        "Temperature_deposition [C]": 62.0,
+        "liquid4": 0.825,
+        "liquid5": 4.275,
+        "liquid6": 1.575
+    },
+    "e2e761d8-2bd9-4550-aefa-ff922b87c94d": {
+        "Deposition current density [mA/cm2]": 190.0,
+        "Deposition time [s]": 303.0,
+        "Temperature_deposition [C]": 32.0,
+        "liquid4": 0.3,
+        "liquid5": 3.75,
+        "liquid6": 10.05
+    },
+    "e014a236-57c4-425e-8b4f-82f4d8611f92": {
+        "Deposition current density [mA/cm2]": 21.0,
+        "Deposition time [s]": 226.0,
+        "Temperature_deposition [C]": 47.0,
+        "liquid4": 0.225,
+        "liquid5": 6.6,
+        "liquid6": 4.425
+    },
+    "3ce24030-d805-478e-a806-fede24e9ebf4": {
+        "Deposition current density [mA/cm2]": 14.0,
+        "Deposition time [s]": 301.0,
+        "Temperature_deposition [C]": 38.0,
+        "liquid4": 0.075,
+        "liquid5": 6.225,
+        "liquid6": 6.825
+    },
+    "a75dc433-ee70-4913-9867-1dfe938715be": {
+        "Deposition current density [mA/cm2]": 111.0,
+        "Deposition time [s]": 514.0,
+        "Temperature_deposition [C]": 37.0,
+        "liquid4": 1.05,
+        "liquid5": 2.55,
+        "liquid6": 6.0
+    },
+    "4a29e48c-9691-4157-be83-f9bf722f1819": {
+        "Deposition current density [mA/cm2]": 164.0,
+        "Deposition time [s]": 447.0,
+        "Temperature_deposition [C]": 31.0,
+        "liquid4": 0.375,
+        "liquid5": 3.975,
+        "liquid6": 7.875
+    },
+    "56fe107d-3bf1-4ea7-9e74-48b09b30d17e": {
+        "Deposition current density [mA/cm2]": 15.0,
+        "Deposition time [s]": 124.0,
+        "Temperature_deposition [C]": 54.0,
+        "liquid4": 0.45,
+        "liquid5": 0.6,
+        "liquid6": 6.525
+    },
+    "1d107258-256f-4be8-839d-77dc756c1086": {
+        "Deposition current density [mA/cm2]": 163.0,
+        "Deposition time [s]": 478.0,
+        "Temperature_deposition [C]": 62.0,
+        "liquid4": 0.3,
+        "liquid5": 3.0,
+        "liquid6": 2.025
+    },
+    "bd28c47c-8c6e-4936-a3d8-a42ffa0f26fd": {
+        "Deposition current density [mA/cm2]": 104.0,
+        "Deposition time [s]": 521.0,
+        "Temperature_deposition [C]": 32.0,
+        "liquid4": 0.0,
+        "liquid5": 0.3,
+        "liquid6": 10.575
+    },
+    "3c369be2-1eef-4e15-aed8-c8632de60e17": {
+        "Deposition current density [mA/cm2]": 103.0,
+        "Deposition time [s]": 452.0,
+        "Temperature_deposition [C]": 44.0,
+        "liquid4": 1.05,
+        "liquid5": 6.675,
+        "liquid6": 3.075
+    },
+    "8a282606-3e94-410b-b905-e7b71c16c61d": {
+        "Deposition current density [mA/cm2]": 124.0,
+        "Deposition time [s]": 520.0,
+        "Temperature_deposition [C]": 61.0,
+        "liquid4": 0.45,
+        "liquid5": 3.825,
+        "liquid6": 7.125
+    },
+    "831dd652-7d72-46ce-8b7e-09a9a719a871": {
+        "Deposition current density [mA/cm2]": 190.0,
+        "Deposition time [s]": 284.0,
+        "Temperature_deposition [C]": 30.0,
+        "liquid4": 1.425,
+        "liquid5": 0.15,
+        "liquid6": 7.65
+    },
+    "4488bcf1-362d-415e-b4ef-587198f352c2": {
+        "Deposition current density [mA/cm2]": 51.0,
+        "Deposition time [s]": 293.0,
+        "Temperature_deposition [C]": 53.0,
+        "liquid4": 1.05,
+        "liquid5": 4.35,
+        "liquid6": 8.775
+    },
+    "9e7cab8e-f067-47df-bd4e-5693c2ca878f": {
+        "Deposition current density [mA/cm2]": 113.0,
+        "Deposition time [s]": 140.0,
+        "Temperature_deposition [C]": 31.0,
+        "liquid4": 0.075,
+        "liquid5": 3.975,
+        "liquid6": 6.45
+    },
+    "c8e7fd92-ff51-4b1c-8ea6-52616f434799": {
+        "Deposition current density [mA/cm2]": 96.0,
+        "Deposition time [s]": 548.0,
+        "Temperature_deposition [C]": 62.0,
+        "liquid4": 0.525,
+        "liquid5": 9.525,
+        "liquid6": 2.85
+    },
+    "84f238bb-86b7-44a9-9f60-c6eb9425f4be": {
+        "Deposition current density [mA/cm2]": 82.0,
+        "Deposition time [s]": 532.0,
+        "Temperature_deposition [C]": 52.0,
+        "liquid4": 0.675,
+        "liquid5": 7.35,
+        "liquid6": 0.45
+    },
+    "c9bcb665-a556-4cc4-a48a-d2961a9dfb77": {
+        "Deposition current density [mA/cm2]": 144.0,
+        "Deposition time [s]": 405.0,
+        "Temperature_deposition [C]": 31.0,
+        "liquid4": 0.0,
+        "liquid5": 3.525,
+        "liquid6": 10.425
+    },
+    "ce3f8b9b-a5b0-4f9b-a331-93ef8026e251": {
+        "Deposition current density [mA/cm2]": 136.0,
+        "Deposition time [s]": 194.0,
+        "Temperature_deposition [C]": 32.0,
+        "liquid4": 1.2,
+        "liquid5": 9.525,
+        "liquid6": 2.4
+    },
+    "e3025691-c05e-4d1d-8171-b891cb74b893": {
+        "Deposition current density [mA/cm2]": 109.0,
+        "Deposition time [s]": 497.0,
+        "Temperature_deposition [C]": 37.0,
+        "liquid4": 0.075,
+        "liquid5": 1.5,
+        "liquid6": 2.175
+    },
+    "4840c43c-1ab1-465c-8e51-6bbb75ceeea4": {
+        "Deposition current density [mA/cm2]": 97.0,
+        "Deposition time [s]": 343.0,
+        "Temperature_deposition [C]": 62.0,
+        "liquid4": 0.3,
+        "liquid5": 4.5,
+        "liquid6": 3.525
+    }
+}
