@@ -1,14 +1,19 @@
 import matplotlib.pyplot as plt 
 import numpy as np
-from analysis_scripts import (get_forwards_backwards_CV_scan, get_stability_data_from_stability_cycling, )
+from analysis_scripts import (get_forwards_backwards_CV_scan,
+                               get_stability_data_from_stability_cycling, 
+                               get_peaks_from_CVs,
+                                 transform_EIS_data_to_dict, 
+                                 transform_CVs_to_stability_metrics, 
+                                 transform_CVs_to_ECSA)
 #from extract_electrochemical_data_from_datasets import analyze_data_after_testing
-
 import os
 import numpy as np
 from datetime import datetime
 import json 
 import pandas as pd 
 import sys 
+import uuid 
 # Add the parent directory to the Python path
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 from analysis_scripts import (extract_CV_data_general_protocol, extract_GEIS_data_general_protocol)
@@ -398,7 +403,6 @@ def extract_all_data_from_experiment(I_stabilities,
     except Exception as e:
         print("Error loading experiment", e)
 
-
 def extract_subprotocols_with_idxs(parameter_dict_file, 
                                    ):
     '''
@@ -437,7 +441,6 @@ def extract_subprotocols_with_idxs(parameter_dict_file,
 
         
     return idx_blocks
-
 
 def extract_subprotocol_data(df, subprotocol_idxs, selected_comment, selected_protocol="CV", geometric_surface_area=0.975):
 
@@ -497,3 +500,167 @@ def extract_subprotocol_data(df, subprotocol_idxs, selected_comment, selected_pr
             })
     
     return selected_data
+
+def extract_data_from_Ni_Mo_v2(folderpath, 
+                                           current_densities_stability = [1, 10, 100], 
+                                           ECSA_json_path=None ,
+                                            Stability_json_path=None, 
+                                            EIS_json_path=None, 
+                                            consider_experiments = None, 
+                                            repeat_exps = False):
+    '''
+        This function extracts data from experiments based on cycling protocol and idxs, 
+        making it more transferrable, generalizable and easier to debug and use
+        Should we make it such that we only consider points that are in the ML log 
+    '''
+    overpotential_evolution = {}
+    CV_calibration_file = None
+    print("-" * 40)
+
+    for file in os.listdir(folderpath):
+        print(file)
+        if "parameter" in file: # Parameter dictionary
+            parameter_dict_path = os.path.join(folderpath, file)
+        elif "Testing_data" in file: # The testing data
+            if file.endswith(".csv"):
+                df_data_path = os.path.join(folderpath, file)
+        elif "calibration" in file:
+            if file.endswith(".csv"):
+                CV_calibration_file = os.path.join(folderpath, file)
+    
+    try:
+        with open(parameter_dict_path, "r") as f:
+            parameter_dict = json.load(f)
+        
+        calibration_data_peaks = get_peaks_from_CVs(CV_file_name=CV_calibration_file, 
+                                                    plot_data=False) # Get the voltage peaks from the calibration data
+        #print("These are the calibration data peaks ", calibration_data_peaks)
+        exp_name = [key for key in parameter_dict if key.endswith(".csv")][0]
+
+        if os.path.exists(ECSA_json_path):
+            # Check if the experiment is already analyzed....
+            # If the loop fails, then it means that 
+            with open(ECSA_json_path, "r") as f:
+                ECSA_dict = json.load(f)
+
+            if exp_name in list(ECSA_dict.keys()):
+                print("Experiment in ECSA dict", exp_name)
+                return 
+         
+        df = pd.read_csv(df_data_path)
+        if consider_experiments is not None:
+            split_exp_name = exp_name.split(".csv")[0]
+            #print(split_exp_name)
+            #print("-" * 40)
+            #print(consider_experiments)
+            
+            if not any(split_exp_name in experiment for experiment in consider_experiments):
+                print("WE get sent the fuck out")
+                return
+    except Exception as e:
+        print("Testing file not found", e)
+        return
+
+    # Extract the idxs for each subprotocol, EIS; CP; CV etc 
+    try:
+        subprotocol_idxs = extract_subprotocols_with_idxs(parameter_dict_path)
+        
+        # Get the stability scans for the Ni_Cr experiments
+        data_stability_scans = extract_subprotocol_data(df=df, 
+                                subprotocol_idxs=subprotocol_idxs, 
+                                selected_comment="Stability scans NiMo")
+
+        # Get the ECSA data before cycling
+        data_ECSA_before = extract_subprotocol_data(df=df, 
+                                subprotocol_idxs=subprotocol_idxs, 
+                                selected_comment="ECSA scans NiMo before cycling") # What comment did we give the protocol
+            
+        # Get the ECSA data after cycling
+        data_ECSA_after = extract_subprotocol_data(df=df, 
+                                subprotocol_idxs=subprotocol_idxs, 
+                                selected_comment="ECSA scans NiMo after cycling", )
+
+        # Transforms the raw data CVs into ECSA CVs. Returns a dictionary ECSA_dict = {"scan_rate" : {names : []} ... }
+        ECSA_dict_before_after = transform_CVs_to_ECSA([data_ECSA_before, data_ECSA_after], 
+                                                        names = ["Cap current init [mA]", 
+                                                                "Cap current final [mA]"], 
+                                                                plot_CVs=False) 
+        # Get the GEIS data before cycling for IR correction
+        data_GEIS_initial = extract_subprotocol_data(df=df, 
+                                subprotocol_idxs=subprotocol_idxs, 
+                                selected_comment="Initial GEIS", 
+                                selected_protocol="GEIS")
+
+        # Get the GEIS data after cycling for IR correction / comparision with initial GEIS
+        data_GEIS_final = extract_subprotocol_data(df=df, 
+                                subprotocol_idxs=subprotocol_idxs, 
+                                selected_comment="Final GEIS", 
+                                selected_protocol="GEIS")
+        
+        EIS_dict = transform_EIS_data_to_dict(EIS_measurements=[data_GEIS_initial, data_GEIS_final], 
+                            names=["GEIS initial", "GEIS final"], plot_EIS=False)
+        
+        
+        IR_correction = EIS_dict["GEIS initial"]["IR correction"]
+
+        Stability_dict = transform_CVs_to_stability_metrics(stability_cycling_CVs=data_stability_scans, 
+                            current_densities = current_densities_stability, 
+                            IR_correction = IR_correction)
+    except Exception as e:
+        print("Failed to extract data from dataset. Dataset likely corrupted, unfinished, or values in the array are inconsistent")
+        print("Exact error: ", e)
+        print("-" * 60)
+        return 
+    if repeat_exps: # That is if the experiment is repeated, then the exp_names will all have the same key... thus we need to ive it a new name
+        exp_name_save_dict = str(uuid.uuid4()) # We just give it a new unique identifier 
+    else:
+        exp_name_save_dict = exp_name
+    EIS_dict_final = {exp_name_save_dict : EIS_dict}
+    ECSA_dict_before_after_final = {exp_name_save_dict : ECSA_dict_before_after}
+    
+    timestamp_str = parameter_dict["timestamp"]
+    timestamp = datetime.strptime(timestamp_str, "%d.%m.%Y at %H:%M")
+    timestamp_iso = timestamp.isoformat()
+    if len(calibration_data_peaks) == 0:
+        calibration = 0
+    else:
+        calibration = np.min(calibration_data_peaks)
+     # Get the key which ends with .csv to get the experimental name
+    overpotential_evolution[exp_name_save_dict] = {
+        "params":  parameter_dict[exp_name],  # All the experimental params 
+        "timestamp" : timestamp_iso, 
+        "calibration CV peak [mV]" : calibration,
+        "exp location PC" : str(folderpath), 
+        "ML optimization params": {
+            
+            "Deposition time [s]": parameter_dict[exp_name]["Deposition time [s]"],
+            "Deposition current density [mA/cm2]": parameter_dict[exp_name]["Deposition current density [mA/cm2]"],
+            "Temperature_deposition [C]": parameter_dict[exp_name]["Temperature_deposition [C]"],
+            **{
+                pump_data["name"]: pump_data["amount [ml]"]
+                for pump_data in parameter_dict[exp_name]["Deposition composition"].values()
+            }
+            #parameter_dict[exp_name]["Deposition composition"]["Pump 4"]["name"]: parameter_dict[exp_name]["Deposition composition"]["Pump 4"]["amount [ml]"],
+            
+        }, 
+        "Cycling results" : Stability_dict
+        
+    }
+
+    # Save the ECSA into a proper array 
+    save_json_safely(json_path=ECSA_json_path, 
+                     data=ECSA_dict_before_after_final)
+    
+    # Save the stability dict
+    save_json_safely(json_path=Stability_json_path, 
+                    data=overpotential_evolution)
+
+    # Save the EIS dict
+    save_json_safely(json_path=EIS_json_path, 
+                    data=EIS_dict_final)
+
+    del df
+    del overpotential_evolution 
+    del ECSA_dict_before_after_final
+
+

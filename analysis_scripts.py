@@ -10,22 +10,21 @@ import os
 import json 
 from scipy import stats
 from scipy.optimize import minimize
+from scipy.ndimage import gaussian_filter1d, median_filter
+from scipy.signal import find_peaks
 
 # All the scripts used here are called upon to analyze the specific Ni - Cr data
 
 # Interpolates IR correction from EIS
-def get_interpolation_EIS(Re_Z, Im_Z, start_from = 0, use_mask = True, save_plotted_data = False, 
-                          
-                          save_path = ""):
+def get_interpolation_EIS(Re_Z, Im_Z):
     '''
         Interpolates the curve for EIS, so that we can calculate the ohmic drop 
     '''
-
-
+    Re_Z, Im_Z = np.array(Re_Z), np.array(Im_Z)
     #compute distance to zero
     distance_to_zero = np.abs(Im_Z)
     #make new mask
-    below_re_z_mask = Re_Z < 1.1
+    below_re_z_mask = Re_Z < 1.1 # Needs to be adjusted to the needs of the user 
     Re_Z_below =Re_Z[below_re_z_mask]
     Im_Z_below = Im_Z[below_re_z_mask]
     distance_below = distance_to_zero[below_re_z_mask]
@@ -50,60 +49,11 @@ def get_interpolation_EIS(Re_Z, Im_Z, start_from = 0, use_mask = True, save_plot
 
     root3 =-b_opt/a_opt
     if abs(a_opt) < 0.5: #if the gradient of the intersecting line is smaller then 0.5
-        root3 = np.mean(nearest_points,axis=0)[0]
+        root3 = np.round(np.mean(nearest_points,axis=0)[0], 2)
+
     
-    print(root3, "This is root 3")
-    
-    if save_plotted_data:
-        # Plot the original data
-        plt.figure(figsize=(12, 9))
-        plt.scatter(Re_Z, Im_Z, label="Original Data", color="blue")
-        # Mark the root on the plot
-        #plt.scatter(root1, 0, label=f"Root at {root1:.2f} Mask 1", color="red", zorder=5)
-
-        #plt.scatter(root2, 0, label=f"Root at {root2:.2f} Mask 2", color="green", zorder=5)
-        # Customize the plot
-
-        plt.scatter(root3,0, label=f"Root at {root3:.2f} Mask 3", color="black", zorder=5)
-
-        plt.axhline(0, color="black", linewidth=0.8, linestyle="--")
-        plt.axvline(root3, color="purple", linewidth=0.8, linestyle="--")
-        plt.legend(fontsize=20, loc = "upper right")
-        plt.xlabel("Re(Z)", fontsize=18)
-        plt.ylabel("Im(Z)", fontsize=18)
-        plt.title("Filtered Data and Interpolation", fontsize=16)
-        plt.grid(alpha=0.5)
-        plt.tight_layout()
-        plt.savefig(os.path.join(save_path, "EIS_interpolation.png"))
-        plt.close()
-
-        # Plot the original data
-        plt.figure(figsize=(12, 9))
-
-        plt.scatter(Re_Z, Im_Z, label="Original Data", color="blue")
-        # Mark the root on the plot
-        #plt.scatter(root1, 0, label=f"Root at {root1:.2f} Mask 1", color="red", zorder=5)
-        # Add root 3 
-        #plt.scatter(root2, 0, label=f"Root at {root2:.2f} Mask 2", color="green", zorder=5)
-
-        plt.scatter(root3,0, label=f"Root at {root3:.2f} Mask 3", color="black", zorder=5)
-        # Customize the plot
-        plt.axhline(0, color="black", linewidth=0.8, linestyle="--")
-        plt.axvline(root3, color="purple", linewidth=0.8, linestyle="--")
-        plt.legend(fontsize=20, loc = "upper right")
-        plt.xlabel("Re(Z)", fontsize=18)
-        plt.ylabel("Im(Z)", fontsize=18)
-        plt.xticks(fontsize = 18)
-        plt.yticks(fontsize = 18)
-        plt.grid(alpha=0.5)
-        plt.xlim(0, 2)
-        plt.ylim(-1, 1)
-        plt.tight_layout()
-        plt.savefig(os.path.join(save_path, "EIS_interpolation_closeup.png"))
-        plt.close()
-    # return root3
     if root3 != 0:
-        return root3
+        return np.round(root3, 2)
     # Could not capture the root, EIS is ill defined
     return 0
 
@@ -153,22 +103,47 @@ def get_ohmic_resistance_from_EIS(df, EIS_dict_name = "", experiment_name = "", 
 
 def get_forwards_backwards_CV_scan(I_mA_CV_i, E_we_CV_i):
     '''
-    Get the forward and backwards CV scan data from the measured current and potential
+    Split a CV into forward and backward scans based on the turning point.
     '''
-    E_we_forward = []
-    I_mA_forward = []
-    E_we_backwards = []
-    I_mA_backwards = []
-    
-    for i in range(1, len(E_we_CV_i)):
-        if E_we_CV_i[i] > E_we_CV_i[i - 1]:
-            E_we_forward.append(E_we_CV_i[i])
-            I_mA_forward.append(I_mA_CV_i[i])
-        else:
-            E_we_backwards.append(E_we_CV_i[i])
-            I_mA_backwards.append(I_mA_CV_i[i])
-    
-    return I_mA_backwards, E_we_backwards, I_mA_forward, E_we_forward
+
+    E_we_CV_i = np.asarray(E_we_CV_i)
+    I_mA_CV_i = np.asarray(I_mA_CV_i)
+
+    # Remove NaN and infinite values
+    mask = np.isfinite(E_we_CV_i) & np.isfinite(I_mA_CV_i)
+    E_we_CV_i = E_we_CV_i[mask]
+    I_mA_CV_i = I_mA_CV_i[mask]
+
+    # Determine initial scan direction
+    dE = np.diff(E_we_CV_i)
+
+    if np.nanmean(dE[:min(10, len(dE))]) > 0:
+        reversal_idx = np.argmax(E_we_CV_i)
+        first_scan = "forward"
+    else:
+        reversal_idx = np.argmin(E_we_CV_i)
+        first_scan = "backward"
+
+    # Split at reversal point
+    E_first = E_we_CV_i[:reversal_idx+1]
+    I_first = I_mA_CV_i[:reversal_idx+1]
+
+    E_second = E_we_CV_i[reversal_idx:]
+    I_second = I_mA_CV_i[reversal_idx:]
+
+    # Assign forward/backward
+    if first_scan == "forward":
+        E_forward = E_first
+        I_forward = I_first
+        E_backward = E_second[::-1]
+        I_backward = I_second[::-1]
+    else:
+        E_backward = E_first
+        I_backward = I_first
+        E_forward = E_second[::-1]
+        I_forward = I_second[::-1]
+
+    return I_backward, E_backward, I_forward, E_forward
 
 def extract_CV_data_from_stability_cycling(df, 
                                            CV_stability_idx = [67, 166],
@@ -598,3 +573,295 @@ def extract_ECSA_data_general_protocol(ECSA_dict,
         plt.close()
 
     return avg_cap_current_after, avg_cap_current_before, sorted(list(ECSA_dict[experiment_name].keys()))[:-1], sorted(list(ECSA_dict[experiment_name].keys()))
+
+def transform_CVs_to_ECSA(CV_series=[], names=["Cap current final [mA]"], scan_idx=-1, plot_CVs=True, plot_certain_scan_rates=None):
+
+    ECSA_dict = {}
+    cmap = plt.get_cmap("coolwarm")
+
+    if plot_CVs:
+        plt.figure(figsize=(13, 10))
+
+    slowest_scan = min((scan for series in CV_series for scan in series), key=lambda s: float(s['params']['variables']['dEdt']))
+    E_ref = np.asarray(slowest_scan["data"][scan_idx]['voltage [mV]'])
+    E_mid_global = 0.5 * (E_ref.max() + E_ref.min())
+
+    for i, CV_series_i in enumerate(CV_series):
+
+        for CV_scans_rate in CV_series_i:
+
+            scan_rate = round(float(CV_scans_rate['params']['variables']['dEdt']) * 1000, 2)
+
+            ECSA_dict.setdefault(scan_rate, {})
+
+            scan = CV_scans_rate["data"][scan_idx]
+            I_mA_cm2 = np.asarray(scan['current_density [mA/cm2]'])
+            WE_mV = np.asarray(scan['voltage [mV]'])
+
+            # Split CV
+            (I_mA_decreasing, E_mV_decreasing, I_mA_increasing, E_mV_increasing) = get_forwards_backwards_CV_scan(I_mA_cm2, WE_mV)
+
+            # Interpolate current exactly at midpoint potential
+            I_mid_increasing = np.interp(E_mid_global, E_mV_increasing, I_mA_increasing)
+            I_mid_decreasing = np.interp(E_mid_global, E_mV_decreasing, I_mA_decreasing)
+
+            # Capacitive current
+            cap_current_scan_rate_i = abs(I_mid_increasing - I_mid_decreasing) / 2
+
+            print("Scan rate:", scan_rate, "mV/s | I forward:", I_mid_increasing, "I backward:", I_mid_decreasing, "Cap:", cap_current_scan_rate_i)
+
+            ECSA_dict[scan_rate][names[i]] = cap_current_scan_rate_i
+
+            if plot_CVs:
+
+                if plot_certain_scan_rates is not None:
+                    if scan_rate not in plot_certain_scan_rates:
+                        continue
+
+                color = cmap(i / max(1, len(CV_series)-1))
+
+                plt.plot(E_mV_increasing, I_mA_increasing, color=color, lw=2, label=f"{names[i]} {scan_rate} mV/s")
+                plt.plot(E_mV_decreasing, I_mA_decreasing, color=color, lw=2, linestyle="--")
+
+                plt.scatter([E_mid_global, E_mid_global], [I_mid_increasing, I_mid_decreasing], color="red", s=70, zorder=5)
+
+    if plot_CVs:
+        plt.xlabel("Potential (mV)", fontsize=18)
+        plt.ylabel("Current density (mA/cm²)", fontsize=18)
+        plt.xticks(fontsize=16)
+        plt.yticks(fontsize=16)
+        plt.grid(alpha=0.3)
+        plt.legend(fontsize=12)
+        plt.tight_layout()
+        plt.show()
+
+    return ECSA_dict
+
+def transform_EIS_data_to_dict(EIS_measurements = [], 
+                               names = ["GEIS_1", "GEIS_2"], 
+                               plot_EIS = False, 
+                               EIS_save_path = None):
+    EIS_dict = {}
+    for i, EIS_measurement_i in enumerate(EIS_measurements):
+        EIS_measurement_i = EIS_measurement_i[0]["data"]
+        Re_Z = [m["Re_Z"][0] for m in EIS_measurement_i]
+        Im_Z = [-m["Im_Z"][0] for m in EIS_measurement_i]
+        freq = [m["frequency [Hz]"][0] for m in EIS_measurement_i]
+        try:
+            ohmic_res = get_interpolation_EIS(Re_Z, Im_Z)
+        except Exception as e:
+            print(e)
+            ohmic_res = 0
+        if plot_EIS:
+            # Colormap based on the index of the point
+            cmap = plt.get_cmap("coolwarm")
+            color = cmap(0.0)   # blue end of coolwarm
+
+            plt.figure(figsize=(10, 8))
+            # Plot initial
+            plt.scatter(Re_Z, Im_Z, color=color, cmap=cmap, edgecolors='k', s=80)
+            plt.xlabel("Re(Z) (Ω)", fontsize=20)
+            plt.ylabel("Im(Z) (Ω)", fontsize=20)
+            plt.scatter(ohmic_res, 0.0, marker='x', color='red',s=160, linewidths=3, label=r'$R_\Omega$ = ' + str(ohmic_res)) # Mark a cross for the ohmic_res we find 
+            plt.grid(True, alpha=0.3)
+            plt.xticks(fontsize=20)
+            plt.yticks(fontsize=20)
+            plt.legend(fontsize=16)
+            plt.show()
+        EIS_dict[names[i]] = {
+            "Re_Z": Re_Z,
+            "Im_Z": Im_Z,
+            "frequency [Hz]": freq,
+            "IR correction": ohmic_res
+        }
+    return EIS_dict
+
+
+def transform_CVs_to_ECSA(
+                          CV_series = [], 
+                          names = ["Cap current final [mA]"], 
+                          scan_idx = -1,
+                          plot_CVs = True,
+                          plot_certain_scan_rates = None):
+    '''
+        Transforms CV from different scan rates into an ECSA value. 
+        The shape of each element in the CV_series needs to be the following form
+        CV_scans = [ {
+            "params" : 'variables' : {"dEdt" : 0.05},  # The CVs at that specific scan rate
+            "data" : [{'current_density [mA/cm2]' : [...], 'voltage [mV]' : [...]},.... {}, {}]
+        },  .... ]
+    '''
+    ECSA_dict = {}
+
+    cmap = plt.get_cmap("coolwarm")
+
+    if plot_CVs:
+        fig, ax = plt.subplots(1, len(CV_series), figsize=(18, 8), sharey=False)
+        if len(CV_series) == 1:
+            ax = [ax]
+    
+    for i, CV_series_i in enumerate(CV_series):
+        ###### Find the voltage midpoint 
+        slowest_scan = min(
+            (scan for series in CV_series for scan in series),
+            key=lambda s: float(s['params']['variables']['dEdt'])
+        )
+
+        slow_scan_data = slowest_scan["data"][scan_idx]
+        E_ref = np.asarray(slow_scan_data['voltage [mV]'])
+
+        E_mid_global = 0.5 * (E_ref.max() + E_ref.min())
+        for CV_scans_rate in CV_series_i:
+            
+            scan_rate = float(
+                round(float(CV_scans_rate['params']['variables']['dEdt']) * 1000, 2)
+            )  # [mV/s]
+            
+            ECSA_dict.setdefault(scan_rate, {})
+
+            scan_no_i_at_scan_rate = CV_scans_rate["data"][scan_idx]
+            I_mA_cm2 = scan_no_i_at_scan_rate['current_density [mA/cm2]']
+            WE_mV = scan_no_i_at_scan_rate['voltage [mV]']
+
+            
+            # Split forward / backward scans
+            I_mA_decreasing, E_mV_decreasing, I_mA_increasing, E_mV_increasing = get_forwards_backwards_CV_scan(I_mA_cm2, WE_mV)
+
+            idx_mid_decreasing = np.argmin(np.abs(E_mV_decreasing - E_mid_global))
+            idx_mid_increasing = np.argmin(np.abs(E_mV_increasing - E_mid_global))
+
+            cap_current_scan_rate_i = abs(
+                I_mA_increasing[idx_mid_increasing] - 
+                I_mA_decreasing[idx_mid_decreasing]) / 2
+
+            ECSA_dict[scan_rate][names[i]] = cap_current_scan_rate_i
+
+            # ---------- PLOTTING ----------
+            if plot_CVs:
+                if plot_certain_scan_rates is not None:
+                    if scan_rate not in plot_certain_scan_rates:
+                        continue
+
+                color = cmap(i / max(1, len(CV_series)-1))
+
+                ax[i].plot(WE_mV, I_mA_cm2, alpha=0.7, lw=2, label=f"{scan_rate} mV/s")
+
+                ax[i].scatter(
+                    [E_mV_increasing[idx_mid_increasing], E_mV_decreasing[idx_mid_decreasing]],
+                    [I_mA_increasing[idx_mid_increasing], I_mA_decreasing[idx_mid_decreasing]],
+                    color="red",
+                    s=70,
+                    zorder=5
+                )
+
+    if plot_CVs:
+        for i in range(len(CV_series)):
+            ax[i].set_title(names[i], fontsize=24)
+            ax[i].set_xlabel("Potential (mV)", fontsize=22)
+            ax[i].tick_params(axis="both", labelsize=20)
+            ax[i].grid(alpha=0.3)
+            ax[i].legend(fontsize=16)
+
+        ax[0].set_ylabel("Current density (mA/cm²)", fontsize=22)
+
+        plt.tight_layout()
+        plt.show()      
+
+    return ECSA_dict
+
+
+def transform_CVs_to_stability_metrics(stability_cycling_CVs, 
+                                              current_densities = 50, 
+                                              geometric_surface_area = 0.97,
+                                              get_stability_from = "forward_scan",
+                                              plot_stability_data = True,
+                                              plot_CV_data = True, 
+                                              cmap = plt.get_cmap("coolwarm"), 
+                                            save_path = None, 
+                                            IR_correction = 0
+                                              ):
+
+    Es = {"Overpotentials at " + f"{current_density} mA/cm2": [] for current_density in current_densities}
+    Is = {"Measured current density at " + f"{current_density} mA/cm2": [] for current_density in current_densities}
+    Rs = {"Resistance at " + f"{current_density} mA/cm2": [] for current_density in current_densities}
+    Es_nonIR = {"Overpotentials at " + f"{current_density} mA/cm2 [non IR corrected]": [] for current_density in current_densities}
+    for i, CV_scan in enumerate(stability_cycling_CVs[0]["data"]):
+    
+        I_mA_cm2_scan_i = CV_scan['current_density [mA/cm2]']
+        WE_mV_scan_i = CV_scan['voltage [mV]']
+
+        I_mA_decreasing, E_mV_decreasing, I_mA_increasing, E_mV_increasing = get_forwards_backwards_CV_scan(I_mA_cm2_scan_i, 
+                                                                                                            WE_mV_scan_i)
+        voltage_interpolated = np.linspace(np.min(WE_mV_scan_i), np.max(WE_mV_scan_i), 10000)
+
+        if get_stability_from == "forward_scan":
+            inter = interpolate.interp1d(E_mV_increasing, np.array(I_mA_increasing) / geometric_surface_area, fill_value="extrapolate")
+        elif get_stability_from =="backward_scan":
+            inter = interpolate.interp1d(E_mV_decreasing, np.array(I_mA_decreasing) / geometric_surface_area, fill_value="extrapolate")
+        
+        current_density_interpolation = inter(voltage_interpolated)
+        mask = voltage_interpolated < 0
+
+        voltage_interpolated = voltage_interpolated[mask]
+        current_density_interpolation = inter(voltage_interpolated)
+
+        for current_density in current_densities:
+            closest_index = np.argmin(np.abs(current_density_interpolation + current_density))
+            overpotential_current_density_scan_i = voltage_interpolated[closest_index] - IR_correction * current_density_interpolation[closest_index] * geometric_surface_area
+            exact_current_density_scan_i = current_density_interpolation[closest_index]
+            resistance_at_current_density_scan_i = (overpotential_current_density_scan_i) / exact_current_density_scan_i # R = U / I
+
+            Es["Overpotentials at " + f"{current_density} mA/cm2"].append(overpotential_current_density_scan_i)
+            Is["Measured current density at " + f"{current_density} mA/cm2"].append(exact_current_density_scan_i)
+            Rs["Resistance at " + f"{current_density} mA/cm2"].append(resistance_at_current_density_scan_i)
+            Es_nonIR["Overpotentials at " + f"{current_density} mA/cm2 [non IR corrected]"].append(voltage_interpolated[closest_index])
+    combined_dict = {**Es, **Is, **Rs, **Es_nonIR}
+    return combined_dict
+
+def get_peaks_from_CVs(CV_file_name, 
+                       plot_data = False):
+    
+    '''
+        Takes as input the file name where the CVs are located, and from this extracts the CVs, and detects all the peaks in 
+        the CVs
+    '''
+
+    Ni_calib_data = pd.read_csv(CV_file_name, sep=",")
+    
+    WE = Ni_calib_data[(Ni_calib_data["Step name"] == "Cyclic Voltammetry") & 
+                    (Ni_calib_data["Step number"] == 2)]["Working Electrode Voltage [V]"].to_numpy() * 1000
+
+    I_mA = Ni_calib_data[(Ni_calib_data["Step name"] == "Cyclic Voltammetry") & 
+                        (Ni_calib_data["Step number"] == 2)]["Current [A]"].to_numpy() * 1000
+
+    # Mask data where WE > 0 mV and <= 1000 mV
+    mask = (WE <= 1000) & (WE > 0)
+    WE_filtered = WE[mask]
+    I_mA_filtered = I_mA[mask]
+
+    # Apply median filter to remove spikes
+    filtered_I_mA = median_filter(I_mA_filtered, size=5)
+
+    # Apply Gaussian smoothing
+    smoothed_I_mA = gaussian_filter1d(filtered_I_mA, sigma=70)  
+
+    # Find peaks
+    peaks, properties = find_peaks(
+        smoothed_I_mA, 
+        height=0.2, 
+        distance=50, 
+        prominence=0.5,  
+        width=5  
+    )
+    if plot_data == True:
+    
+        plt.figure(figsize=(10, 7))
+        plt.plot(WE_filtered, I_mA_filtered, label="Raw Data", alpha=0.5)
+        plt.plot(WE_filtered, smoothed_I_mA, label="Smoothed Data", linewidth=2)
+        plt.scatter(WE_filtered[peaks], smoothed_I_mA[peaks], color='red', label="Detected Peaks")
+        plt.xlabel("Voltage (mV)")
+        plt.ylabel("Current (mA)")
+        plt.legend()
+        plt.show()
+
+    return WE_filtered[peaks]
