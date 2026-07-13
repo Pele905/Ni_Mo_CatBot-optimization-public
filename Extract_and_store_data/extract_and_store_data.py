@@ -18,8 +18,9 @@ data_hybrid = root_path + "/Ni_Mo_optimization_run_01_05_25"
 data_beta_5 = root_path + "/Ni_Mo_Optimization_Jonas/Beta_5"
 data_beta_1 = root_path + "/Ni_Mo_Optimization_Jonas/Beta_1"
 
-data_random = "Datasets/Random_test" #root_path + "/NiMo optimizations all/First review/Random experiments baseline"
-
+root_path_random = "/Volumes/Elements/Random experiments baseline"
+data_random_1 = "/Volumes/Elements/Random experiments baseline/seed_42"
+data_random_2 = "/Volumes/Elements/Random experiments baseline/seed_1"
 root_save_path_json = "/Users/pvifr/Desktop/ElectrochemicalDataAnalysis/Ni_Mo_CatBot optimization public/Datasets"
 
 keywords = ["Ni_Mo_hybrid", "Ni_Mo_beta_1", "Ni_Mo_beta_5"]
@@ -32,7 +33,6 @@ folders = [
 
 if 1 == 2:
     for folder, keyword in zip(folders, keywords):
-        
         
         ECSA_json = os.path.join(root_save_path_json, f"ECSA_complete_{keyword}.json")
         EIS_json = os.path.join(root_save_path_json, f"EIS_complete_{keyword}.json")
@@ -56,13 +56,14 @@ if 1 == 2:
                 
 
 # Random experimentation
-for folder, keyword in zip([data_random], ["random"]):
-    
+for folder, keyword in zip([data_random_1, data_random_2], ["random_seed_42", "random_seed_1"]):
+    print(folder, "This is folder we are analyzing")
     ECSA_json = os.path.join(root_save_path_json, f"ECSA_complete_{keyword}.json")
     EIS_json = os.path.join(root_save_path_json, f"EIS_complete_{keyword}.json")
     Stability_json = os.path.join(root_save_path_json, f"Stability_complete_{keyword}.json")
 
     for subfolder in os.listdir(folder):
+        print(subfolder)
         if "exp" in subfolder:
             
             init = time.time()
