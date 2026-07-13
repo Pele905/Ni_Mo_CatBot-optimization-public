@@ -21,6 +21,7 @@ def get_interpolation_EIS(Re_Z, Im_Z):
         Interpolates the curve for EIS, so that we can calculate the ohmic drop 
     '''
     Re_Z, Im_Z = np.array(Re_Z), np.array(Im_Z)
+
     #compute distance to zero
     distance_to_zero = np.abs(Im_Z)
     #make new mask
@@ -31,7 +32,6 @@ def get_interpolation_EIS(Re_Z, Im_Z):
     #soret by distance to Im_Z =0 and select 10 nearest
     nearest_indices = np.argsort(distance_below)[:10]
     nearest_points = np.column_stack((Re_Z_below[nearest_indices],Im_Z_below[nearest_indices]))
-
     def Line_distance(params):
         a, b = params #line: y=ax+b
         distances = []
@@ -226,6 +226,8 @@ def extract_GEIS_data_general_protocol(df,
     split_values = np.split(unique_step_numbers, splits)
 
     EIS_dict_i = {experiment_name : {}}
+
+
     for i, group in enumerate(split_values):
         
         # Filter rows corresponding to the current group of step numbers
@@ -255,20 +257,17 @@ def extract_GEIS_data_general_protocol(df,
             plt.show()
             
             
-
         EIS_dict_i[experiment_name][f"GEIS_{i + 1}"] = {"Re_Z": list(Re_Z), 
                                                         "Im_Z": list(Im_Z)}
         
-        
         if i == use_GEIS_i_for_IR:
             try:
-                ohmic_res = get_interpolation_EIS(Re_Z, Im_Z, use_mask = True, save_plotted_data = save_plotted_data, 
-                                                  save_path=save_path)
-                
-            except:
+                ohmic_res = get_interpolation_EIS(Re_Z, Im_Z)
+                print("This is ohmic resistance: ", ohmic_res)
+            except Exception as e:
+                print(e, " Ohmic resistance calculation failed")
                 try:
-                    ohmic_res = get_interpolation_EIS(Re_Z, Im_Z, start_from=8, use_mask = True, save_plotted_data = save_plotted_data, 
-                                                  save_path=save_path)
+                    ohmic_res = get_interpolation_EIS(Re_Z, Im_Z)
                     
                 except:
                     ohmic_res = 0
@@ -286,7 +285,7 @@ def sort_CVs_based_on_scan_rates(df,
 
     sorted_CVs = {}
     
-    print(ECSA_cycling_data)
+    
     for CV_step_i in CV_steps:
         
         CV_V_i = df[df["Step number"] == CV_step_i]['Working Electrode Voltage [V]'].to_numpy()
@@ -385,7 +384,13 @@ def get_stability_data_from_stability_cycling(stability_cycling_dict,
         elif get_stability_from =="backward_scan":
             inter = interpolate.interp1d(E_mV_decreasing, np.array(I_mA_decreasing) / geometric_surface_area, fill_value="extrapolate")
         
+        
         current_density_interpolation = inter(voltage_interpolated)
+        mask = voltage_interpolated < 0
+
+        voltage_interpolated = voltage_interpolated[mask]
+        current_density_interpolation = inter(voltage_interpolated)
+
         for current_density in current_densities:
             closest_index = np.argmin(np.abs(current_density_interpolation + current_density))
             overpotential_current_density_scan_i = voltage_interpolated[closest_index] - IR_correction * current_density_interpolation[closest_index] * geometric_surface_area
@@ -398,7 +403,6 @@ def get_stability_data_from_stability_cycling(stability_cycling_dict,
     
     combined_dict = {**Es, **Is, **Rs}
     return combined_dict
-
 
 def transform_CVs_to_stability_metrics(stability_cycling_CVs, 
                                               current_densities = 50, 

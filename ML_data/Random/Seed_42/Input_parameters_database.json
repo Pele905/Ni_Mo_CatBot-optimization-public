@@ -166,5 +166,125 @@
         "liquid4": 0.3,
         "liquid5": 4.5,
         "liquid6": 3.525
+    },
+    "0ff84882-1137-464b-8366-747909aacb2d": {
+        "Deposition current density [mA/cm2]": 158.0,
+        "Deposition time [s]": 536.0,
+        "Temperature_deposition [C]": 35.0,
+        "liquid4": 0.15,
+        "liquid5": 9.225,
+        "liquid6": 2.7
+    },
+    "d71bb21a-5a43-448c-8628-f5f7847deab9": {
+        "Deposition current density [mA/cm2]": 191.0,
+        "Deposition time [s]": 312.0,
+        "Temperature_deposition [C]": 50.0,
+        "liquid4": 0.0,
+        "liquid5": 4.95,
+        "liquid6": 9.525
+    },
+    "c5e7bb54-2e82-4712-8bca-1a2e119e8fdf": {
+        "Deposition current density [mA/cm2]": 18.0,
+        "Deposition time [s]": 382.0,
+        "Temperature_deposition [C]": 69.0,
+        "liquid4": 0.975,
+        "liquid5": 1.725,
+        "liquid6": 8.475
+    },
+    "f09de4c0-2d86-4390-9c26-486956f5f990": {
+        "Deposition current density [mA/cm2]": 137.0,
+        "Deposition time [s]": 305.0,
+        "Temperature_deposition [C]": 68.0,
+        "liquid4": 0.675,
+        "liquid5": 1.875,
+        "liquid6": 7.35
+    },
+    "cfbe84a7-f201-4bd9-81d2-909a234ebf79": {
+        "Deposition current density [mA/cm2]": 50.0,
+        "Deposition time [s]": 467.0,
+        "Temperature_deposition [C]": 42.0,
+        "liquid4": 0.45,
+        "liquid5": 4.2,
+        "liquid6": 2.625
+    },
+    "39dda457-f8f2-41c2-9ccd-d348c953a947": {
+        "Deposition current density [mA/cm2]": 115.0,
+        "Deposition time [s]": 530.0,
+        "Temperature_deposition [C]": 44.0,
+        "liquid4": 0.075,
+        "liquid5": 4.875,
+        "liquid6": 2.325
+    },
+    "57704f19-1983-4d13-be81-f728f61cd7a6": {
+        "Deposition current density [mA/cm2]": 70.0,
+        "Deposition time [s]": 113.0,
+        "Temperature_deposition [C]": 66.0,
+        "liquid4": 0.0,
+        "liquid5": 0.525,
+        "liquid6": 3.9
+    },
+    "3e1cd0eb-c406-4149-a524-c3cbda7eacc4": {
+        "Deposition current density [mA/cm2]": 60.0,
+        "Deposition time [s]": 64.0,
+        "Temperature_deposition [C]": 68.0,
+        "liquid4": 0.225,
+        "liquid5": 0.375,
+        "liquid6": 8.1
+    },
+    "4406f5e9-caa8-4266-8e7a-c82211555b51": {
+        "Deposition current density [mA/cm2]": 63.0,
+        "Deposition time [s]": 117.0,
+        "Temperature_deposition [C]": 55.0,
+        "liquid4": 0.3,
+        "liquid5": 8.7,
+        "liquid6": 4.575
+    },
+    "d3d0aa3c-f8b2-4f20-8975-f39a22867309": {
+        "Deposition current density [mA/cm2]": 23.0,
+        "Deposition time [s]": 186.0,
+        "Temperature_deposition [C]": 38.0,
+        "liquid4": 0.825,
+        "liquid5": 9.6,
+        "liquid6": 4.275
+    },
+    "cf493b47-e91f-4b46-a678-f79e3840cf14": {
+        "Deposition current density [mA/cm2]": 129.0,
+        "Deposition time [s]": 331.0,
+        "Temperature_deposition [C]": 68.0,
+        "liquid4": 0.3,
+        "liquid5": 1.575,
+        "liquid6": 6.9
+    },
+    "c9fd80d6-eaf2-47af-b2d0-c1d51900beaf": {
+        "Deposition current density [mA/cm2]": 185.0,
+        "Deposition time [s]": 344.0,
+        "Temperature_deposition [C]": 43.0,
+        "liquid4": 0.3,
+        "liquid5": 3.45,
+        "liquid6": 6.975
+    },
+    "a929f804-8859-4fa6-aa68-b402a16a0e08": {
+        "Deposition current density [mA/cm2]": 39.0,
+        "Deposition time [s]": 348.0,
+        "Temperature_deposition [C]": 59.0,
+        "liquid4": 0.3,
+        "liquid5": 1.65,
+        "liquid6": 0.675
+    },
+    "6885a3d8-bf45-4743-a7da-974a022df069": {
+        "Deposition current density [mA/cm2]": 186.0,
+        "Deposition time [s]": 384.0,
+        "Temperature_deposition [C]": 33.0,
+        "liquid4": 1.125,
+        "liquid5": 1.725,
+        "liquid6": 5.925
+    },
+    "623c3604-0bf0-4aae-a476-87fcc89708b3": {
+        "Deposition current density [mA/cm2]": 74.0,
+        "Deposition time [s]": 102.0,
+        "Temperature_deposition [C]": 58.0,
+        "liquid4": 0.9,
+        "liquid5": 0.825,
+        "liquid6": 7.05
     }
 }

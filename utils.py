@@ -265,18 +265,6 @@ def extract_CVs_GEIS(datafile_path = None,
     if save_folder_path_data_file == "":
         save_folder_path_data_file = os.path.dirname(datafile_path)
     
-    try:
-        for file in os.listdir(save_folder_path_data_file):
-            if "temperature" in file:
-                temperature_json_path = os.path.join(save_folder_path_data_file, file) # if you want to investigate the temoperature file
-            if "dep" in file:
-                deposition_csv_path =  os.path.join(save_folder_path_data_file, file)# if you want to investigate the deposition potential file
-            if "parameter" in file:
-                parameter_dict_path = os.path.join(save_folder_path_data_file, file)# if you want to investigate the parameter files
-            
-    except:
-        pass
-    
     # Extract the stability cycling CVs, as well as the ECSA dictionary
     stability_cycling_CVs, ECSA_dict = extract_CV_data_general_protocol(df=df, 
                                                                         experiment_name=experiment_name, 
@@ -311,7 +299,9 @@ def extract_all_data_from_experiment(I_stabilities,
         This is for Ni-Cr paper 
     '''
     overpotential_evolution = {}    
-    
+    print("-" * 40)
+    print("Analyzing: ")
+    print(folderpath)
     # The experiment is not used for training, skip it 
     try:
         for file in os.listdir(folderpath):
@@ -516,9 +506,9 @@ def extract_data_from_Ni_Mo_v2(folderpath,
     overpotential_evolution = {}
     CV_calibration_file = None
     print("-" * 40)
-
+    print("Analyzing: ")
+    print(folderpath)
     for file in os.listdir(folderpath):
-        print(file)
         if "parameter" in file: # Parameter dictionary
             parameter_dict_path = os.path.join(folderpath, file)
         elif "Testing_data" in file: # The testing data
@@ -602,6 +592,7 @@ def extract_data_from_Ni_Mo_v2(folderpath,
         
         
         IR_correction = EIS_dict["GEIS initial"]["IR correction"]
+        print("Tnis is IR correction: ", IR_correction)
 
         Stability_dict = transform_CVs_to_stability_metrics(stability_cycling_CVs=data_stability_scans, 
                             current_densities = current_densities_stability, 

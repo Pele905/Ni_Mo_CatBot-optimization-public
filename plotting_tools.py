@@ -3,7 +3,9 @@ import numpy as np
 
 
 def extract_ECSA(ECSA_dict, 
-                 plot = True):
+                 plot = True, 
+                 min_scan_rate = 0, 
+                 max_scan_rate = np.inf):
 
     cmap = plt.get_cmap("coolwarm")
     blue = cmap(0.0)
@@ -14,7 +16,9 @@ def extract_ECSA(ECSA_dict,
     cap_final = []
 
     for scan_rate in sorted(ECSA_dict.keys()):
-        if scan_rate >= 41:
+        if scan_rate >= max_scan_rate:
+            continue
+        if scan_rate <= min_scan_rate:
             continue
         scan_rates.append(scan_rate)
         cap_init.append(ECSA_dict[scan_rate]["Cap current init [mA]"])

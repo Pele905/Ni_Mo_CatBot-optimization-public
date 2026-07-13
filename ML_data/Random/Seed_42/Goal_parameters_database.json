@@ -82,5 +82,65 @@
     "4840c43c-1ab1-465c-8e51-6bbb75ceeea4": {
         "Integrated stability at 10 [mA/cm2]": 11334.915248882831,
         "Integrated Resistance values at 10 [mA/cm2]": 11.473302032851459
+    },
+    "0ff84882-1137-464b-8366-747909aacb2d": {
+        "Integrated stability at 10 [mA/cm2]": 25429.882275541542,
+        "Integrated Resistance values at 10 [mA/cm2]": 25.615813131604938
+    },
+    "d71bb21a-5a43-448c-8628-f5f7847deab9": {
+        "Integrated stability at 10 [mA/cm2]": 22690.883467585067,
+        "Integrated Resistance values at 10 [mA/cm2]": 22.87667181431928
+    },
+    "c5e7bb54-2e82-4712-8bca-1a2e119e8fdf": {
+        "Integrated stability at 10 [mA/cm2]": 21450.98833424242,
+        "Integrated Resistance values at 10 [mA/cm2]": 21.67815889734959
+    },
+    "f09de4c0-2d86-4390-9c26-486956f5f990": {
+        "Integrated stability at 10 [mA/cm2]": 11336.88839744493,
+        "Integrated Resistance values at 10 [mA/cm2]": 11.478740262109936
+    },
+    "cfbe84a7-f201-4bd9-81d2-909a234ebf79": {
+        "Integrated stability at 10 [mA/cm2]": 23552.73536645003,
+        "Integrated Resistance values at 10 [mA/cm2]": 23.756754396140693
+    },
+    "39dda457-f8f2-41c2-9ccd-d348c953a947": {
+        "Integrated stability at 10 [mA/cm2]": 20852.566022058014,
+        "Integrated Resistance values at 10 [mA/cm2]": 21.030628646556124
+    },
+    "57704f19-1983-4d13-be81-f728f61cd7a6": {
+        "Integrated stability at 10 [mA/cm2]": 22321.952954063378,
+        "Integrated Resistance values at 10 [mA/cm2]": 22.54161778083833
+    },
+    "3e1cd0eb-c406-4149-a524-c3cbda7eacc4": {
+        "Integrated stability at 10 [mA/cm2]": 26926.167773706446,
+        "Integrated Resistance values at 10 [mA/cm2]": 27.191268416554486
+    },
+    "4406f5e9-caa8-4266-8e7a-c82211555b51": {
+        "Integrated stability at 10 [mA/cm2]": 26166.336486971322,
+        "Integrated Resistance values at 10 [mA/cm2]": 26.399546328543877
+    },
+    "d3d0aa3c-f8b2-4f20-8975-f39a22867309": {
+        "Integrated stability at 10 [mA/cm2]": 26323.75083528287,
+        "Integrated Resistance values at 10 [mA/cm2]": 27.0587473213241
+    },
+    "cf493b47-e91f-4b46-a678-f79e3840cf14": {
+        "Integrated stability at 10 [mA/cm2]": 9794.990121651164,
+        "Integrated Resistance values at 10 [mA/cm2]": 9.918223870259009
+    },
+    "c9fd80d6-eaf2-47af-b2d0-c1d51900beaf": {
+        "Integrated stability at 10 [mA/cm2]": 24834.426432836415,
+        "Integrated Resistance values at 10 [mA/cm2]": 25.01659537232144
+    },
+    "a929f804-8859-4fa6-aa68-b402a16a0e08": {
+        "Integrated stability at 10 [mA/cm2]": 10046.057565394576,
+        "Integrated Resistance values at 10 [mA/cm2]": 10.16188531323851
+    },
+    "6885a3d8-bf45-4743-a7da-974a022df069": {
+        "Integrated stability at 10 [mA/cm2]": 26096.498934711006,
+        "Integrated Resistance values at 10 [mA/cm2]": 26.305813311220216
+    },
+    "623c3604-0bf0-4aae-a476-87fcc89708b3": {
+        "Integrated stability at 10 [mA/cm2]": 26853.694826611685,
+        "Integrated Resistance values at 10 [mA/cm2]": 27.113741273942356
     }
 }
