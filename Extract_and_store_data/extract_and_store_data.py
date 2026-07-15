@@ -57,13 +57,12 @@ if 1 == 2:
 
 # Random experimentation
 for folder, keyword in zip([data_random_1, data_random_2], ["random_seed_42", "random_seed_1"]):
-    print(folder, "This is folder we are analyzing")
+
     ECSA_json = os.path.join(root_save_path_json, f"ECSA_complete_{keyword}.json")
     EIS_json = os.path.join(root_save_path_json, f"EIS_complete_{keyword}.json")
     Stability_json = os.path.join(root_save_path_json, f"Stability_complete_{keyword}.json")
 
     for subfolder in os.listdir(folder):
-        print(subfolder)
         if "exp" in subfolder:
             
             init = time.time()
