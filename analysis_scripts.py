@@ -648,9 +648,16 @@ def transform_EIS_data_to_dict(EIS_measurements = [],
     EIS_dict = {}
     for i, EIS_measurement_i in enumerate(EIS_measurements):
         EIS_measurement_i = EIS_measurement_i[0]["data"]
-        Re_Z = [m["Re_Z"][0] for m in EIS_measurement_i]
-        Im_Z = [-m["Im_Z"][0] for m in EIS_measurement_i]
-        freq = [m["frequency [Hz]"][0] for m in EIS_measurement_i]
+        #print(step_numbers)
+        try:
+            Re_Z = [m["Re_Z"][0] for m in EIS_measurement_i]
+            Im_Z = [-m["Im_Z"][0] for m in EIS_measurement_i]
+            freq = [m["frequency [Hz]"][0] for m in EIS_measurement_i]
+        except: # Some error in the indexation and therefore we have to go back two indexes...
+            max_step_number = EIS_measurement_i[-1]["step_number"]
+            Re_Z = [m["Re_Z"][0] for m in EIS_measurement_i if m["step_number"] < max_step_number]
+            Im_Z = [-m["Im_Z"][0] for m in EIS_measurement_i if m["step_number"] < max_step_number]
+            freq = [m["frequency [Hz]"][0] for m in EIS_measurement_i if m["step_number"] < max_step_number]
         try:
             ohmic_res = get_interpolation_EIS(Re_Z, Im_Z)
         except Exception as e:
