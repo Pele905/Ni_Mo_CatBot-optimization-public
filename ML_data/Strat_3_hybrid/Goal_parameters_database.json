@@ -268,11 +268,5 @@
     },
     "T_test_80C_T_dep_69.0C_dep_density_mA_cm2_172.1_dep_time_s_288.3_roll_while_depositing_True_HCl_dipping_time_s_900_HCl_molarity_3_Retained_electrolyte_False_Protocol_testing_protocol_Ni_Mo_exp_cycle_8_KOH_batch_Batch fabricated 05.3.2025 Pre electrolyzed 72 h 30 wt %_start_time_13.05.2025 at 03:12": {
         "Integrated stability at 10 [mA/cm2]": 12432.84551638879
-    },
-    "T_test_80C_T_dep_62.0C_dep_density_mA_cm2_137.4_dep_time_s_239.3_roll_while_depositing_True_HCl_dipping_time_s_900_HCl_molarity_3_Retained_electrolyte_False_Protocol_testing_protocol_Ni_Mo_exp_cycle_1_KOH_batch_Batch fabricated 05.01.2025 Pre electrolyzed 72 h 30 wt %_start_time_15.05.2025 at 15:55": {
-        "Integrated stability at 10 [mA/cm2]": 21417.044708732694
-    },
-    "T_test_80C_T_dep_62.0C_dep_density_mA_cm2_181.0_dep_time_s_585.7_roll_while_depositing_True_HCl_dipping_time_s_900_HCl_molarity_3_Retained_electrolyte_False_Protocol_testing_protocol_Ni_Mo_exp_cycle_2_KOH_batch_Batch fabricated 05.01.2025 Pre electrolyzed 72 h 30 wt %_start_time_15.05.2025 at 17:34": {
-        "Integrated stability at 10 [mA/cm2]": 13947.11068416228
     }
 }
