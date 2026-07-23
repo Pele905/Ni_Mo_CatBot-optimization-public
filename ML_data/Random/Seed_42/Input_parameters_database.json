@@ -278,13 +278,5 @@
         "liquid4": 1.125,
         "liquid5": 1.725,
         "liquid6": 5.925
-    },
-    "623c3604-0bf0-4aae-a476-87fcc89708b3": {
-        "Deposition current density [mA/cm2]": 74.0,
-        "Deposition time [s]": 102.0,
-        "Temperature_deposition [C]": 58.0,
-        "liquid4": 0.9,
-        "liquid5": 0.825,
-        "liquid6": 7.05
     }
 }
