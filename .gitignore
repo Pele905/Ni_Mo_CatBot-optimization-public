@@ -7,3 +7,4 @@ __pycache__/
 **/.DS_Store
 *.csv
 Ni_Mo_reproducibility.ipynb
+detailed_data_analysis.ipynb
