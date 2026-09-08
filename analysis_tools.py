@@ -162,7 +162,7 @@ def get_df_from_ML_optimization(
                     
                 else:
                     source, key = spec
-                    print(input_params[experiment_i_inp], " THis is input params", spec)
+                    
                     if source == "input":
                         features[feature_name] = input_params[experiment_i_inp][key]
 
